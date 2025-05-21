@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Requests\Dashboard\Work;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateWorkRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        $rules = [
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:10240',
+        ];
+        foreach (config('translatable.locales') as $locale) {
+            $rules["$locale.name"] = 'sometimes|string|max:255';
+            $rules["$locale.description"] = 'sometimes|string';
+            $rules["$locale.meta_description"] = 'nullable|string';
+            $rules["$locale.classification"] = 'nullable|string|max:255';
+        }
+        return $rules;
+    }
+
+}

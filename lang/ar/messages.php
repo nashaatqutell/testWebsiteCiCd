@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'success' => 'تمت الاضافة بنجاح',
+    'send' => 'تم الارسال بنجاح',
+    'update' => 'تم التعديل بنجاح',
+    'delete' => 'تم الحذف بنجاح',
+    "not_found" => "العنصر غير موجود",
+    "fetched_successfully" => "تم الحصول على البيانات بنجاح",
+    "new_password_must_be_different_from_old_password" => "كلمة المرور الجديدة لا يمكن ان تكون متطابقة مع كلمة المرور القديمة",
+    "status_updated_successfully"=>"تم تحديث الحاله بنجاح",
+    "no_data_found" => "لا توجد بيانات",
+    "name" => "الاسم",
+    "description" => "الوصف",
+    "image" => "الصورة",
+    "added_by_id" => "المضاف بواسطة",
+    "email" => "البريد الإلكتروني",
+    "password" => "كلمة المرور",
+    "phone" => "رقم الهاتف",
+    "is_active" => "الحالة",
+    "role" => "الصلاحية",
+    "subject" => "الموضوع",
+    "message" => "الرسالة",
+    "contacts" => "المتصلين",
+    "users" => "المستخدمين",
+    "employees" => "الموظفين",
+    "id" => "المعرف",
+    "the otp code has been sent successfully" => "تم ارسال الكود بنجاح",
+    "retrieved_successfully" => "تم الحصول على البيانات بنجاح",
+
+];

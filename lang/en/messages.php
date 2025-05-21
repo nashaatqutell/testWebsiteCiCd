@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'success' => 'Added Successfully',
+    'send' => 'Send Successfully',
+    'update' => 'Updated Successfully',
+    'delete' => 'Deleted Successfully',
+    "not_found" => "Not Found",
+    "fetched_successfully" => "Fetched Successfully",
+    "new_password_must_be_different_from_old_password" => "New Password Must Be Different From Old Password",
+    "status_updated_successfully"=>"Status Updated Successfully",
+    "no_data_found" => "No Data Found",
+    "name" => "Name",
+    "email" => "Email",
+    "phone" => "Phone",
+    "password" => "Password",
+    "confirm_password" => "Confirm Password",
+    "role" => "Role",
+    "status" => "Status",
+    "subject" => "Subject",
+    "message" => "Messages",
+    "contacts" => "Contacts",
+    "users" => "Users",
+    "employees" => "Employees",
+    "id" => "ID",
+    "the otp code has been sent successfully" => "The OTP code has been sent successfully",
+    "retrieved_successfully" => "Retrieved Successfully",
+];
