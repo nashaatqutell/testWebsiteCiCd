@@ -28,6 +28,9 @@ class AboutController extends Controller
     public function index()
     {
         $abouts = $this->aboutService->getAllAbouts('paginate');
+
+
+
         return $this->paginateResponse(AboutResource::collection($abouts), $abouts);
     }
 
