@@ -12,8 +12,10 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: laravel
-          MYSQL_DATABASE: laravel
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: apiwebsite
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 
         ports:
           - 3306:3306
         options: >-
