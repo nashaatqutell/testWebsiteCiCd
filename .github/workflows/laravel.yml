@@ -1,12 +1,14 @@
 name: Laravel CI/CD
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+
+#  push:
+#    branches: [main]
 
 jobs:
   laravel-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest   #    // the OS to run the job on (ubuntu, windows, macos) (the runner)
 
     services:
       mysql:
