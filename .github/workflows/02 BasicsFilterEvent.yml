@@ -1,8 +1,10 @@
 name: 02 Basics Filtering Event CI/CD
 on:
   push:
-    tags:
-      - v*
+    paths:
+      - routes/**.php
+#    tags:
+#      - v*
 #  pull_request:
 #    types: [closed]
 #    branches:
