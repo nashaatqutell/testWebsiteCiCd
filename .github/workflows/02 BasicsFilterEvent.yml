@@ -1,13 +1,9 @@
-name: 01 Basics CI/CD
+name: 02 Basics Filtering Event CI/CD
 on:
   pull_request:
     types: [closed]
     branches-ignore:
       - main
-#  push:
-#    branches:
-#      - main
-#      - develop
 
 jobs:
   print-hello-world:
