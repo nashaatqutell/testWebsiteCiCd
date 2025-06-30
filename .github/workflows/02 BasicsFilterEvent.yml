@@ -1,8 +1,9 @@
 name: 02 Basics Filtering Event CI/CD
 on:
-  push:
-    paths:
-      - routes/**.php
+    workflow_dispatch:
+#  push:
+#    paths:
+#      - routes/**.php
 #    tags:
 #      - v*
 #  pull_request:
