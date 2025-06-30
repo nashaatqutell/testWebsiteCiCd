@@ -1,9 +1,12 @@
 name: 01 Basics CI/CD
 on:
-  push:
-    branches:
+  pull_request:
+    branches-ignore:
       - main
-      - develop
+#  push:
+#    branches:
+#      - main
+#      - develop
 
 jobs:
   print-hello-world:
