@@ -1,0 +1,11 @@
+name: 04 Basics schedule CI/CD
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # every Sunday at 00:00
+  workflow_dispatch:
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"
