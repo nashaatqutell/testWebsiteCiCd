@@ -1,0 +1,3 @@
+<?php
+
+// fuck route test
