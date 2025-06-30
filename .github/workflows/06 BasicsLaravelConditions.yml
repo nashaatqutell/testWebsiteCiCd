@@ -9,9 +9,13 @@ on:
 jobs:
   print-hello-world:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Print Hello World
         run: echo "Hello World"
 
       - name: Print fuck you
         run: echo "fuck you"
+
+      - name: Print Context Data
+        run: echo "${{ toJSON(github) }}"
