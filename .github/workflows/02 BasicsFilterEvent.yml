@@ -1,7 +1,13 @@
 name: 02 Basics Filtering Event CI/CD
 on:
-  pull_request:
-    types: [locked]
+    workflow_dispatch:
+#  push:
+#    paths:
+#      - routes/**.php
+#    tags:
+#      - v*
+#  pull_request:
+#    types: [closed]
 #    branches:
 #      - main
 

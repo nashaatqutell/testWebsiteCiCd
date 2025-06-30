@@ -1,0 +1,11 @@
+name: 03 Outside Repos CI/CD
+on:
+  repository_dispatch:
+    types: [deploy-test]
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"

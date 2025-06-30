@@ -166,5 +166,4 @@ Route::name('admin.')->prefix(LaravelLocalization::setLocale() . '/admin')->midd
 
     require __DIR__ . '/auth.php';
 
-    //// update in web route
 });
