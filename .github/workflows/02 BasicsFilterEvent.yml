@@ -1,7 +1,10 @@
 name: 02 Basics Filtering Event CI/CD
 on:
-  pull_request:
-    types: [locked]
+  push:
+    tags:
+      - v*
+#  pull_request:
+#    types: [closed]
 #    branches:
 #      - main
 
