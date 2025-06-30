@@ -1,4 +1,5 @@
 name: 05 Basics Context CI/CD
+run-name: ${{ github.actor }} explaining the context try number ${{ github.run_number }}
 on:
   workflow_dispatch:
 
@@ -7,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Context Data
-#        run: echo "${{ toJSON(github) }}"
-        run: echo "${{ github.actor }}"
+        run: echo "${{ github['repository_owner'] }}"
+#        run: echo "${{ github.actor }}"
