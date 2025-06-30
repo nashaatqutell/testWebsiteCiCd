@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Context Data
-        run: echo "${{ job.status }}"
+        run: echo "${{ github['repository_owner'] }}"
 #        run: echo "${{ github.actor }}"
