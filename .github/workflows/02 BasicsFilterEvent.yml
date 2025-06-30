@@ -1,13 +1,13 @@
 name: 02 Basics Filtering Event CI/CD
 on:
   pull_request:
-    types: [closed]
-    branches:
-      - main
+    types: [locked]
+#    branches:
+#      - main
 
 jobs:
   print-hello-world:
-    if: github.event.pull_request.merged == true  # ← الشرط ده مهم جدًا
+#    if: github.event.pull_request.merged == true  # ← الشرط ده مهم جدًا
     runs-on: ubuntu-latest
     steps:
       - name: Print Hello World
