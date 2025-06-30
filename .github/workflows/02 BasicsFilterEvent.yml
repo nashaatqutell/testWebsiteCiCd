@@ -1,0 +1,13 @@
+name: 01 Basics CI/CD
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"
