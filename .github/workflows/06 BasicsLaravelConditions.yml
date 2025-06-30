@@ -1,0 +1,17 @@
+name: 06 Basics Laravel Conditions CI/CD
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World"
+
+      - name: Print fuck you
+        run: echo "fuck you"
