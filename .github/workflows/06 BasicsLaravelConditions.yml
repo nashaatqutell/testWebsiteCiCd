@@ -18,4 +18,5 @@ jobs:
         run: echo "fuck you"
 
       - name: Print Context Data
+        if: github.event.pull_request.changed_files > 1
         run: echo "${{ toJSON(github) }}"
