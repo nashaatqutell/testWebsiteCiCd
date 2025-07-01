@@ -3,11 +3,11 @@ on:
     workflow_dispatch:
 
 env:
-    SEARCHKEY:${{contains('Hello world', 'llo')}}
+    SEARCH_KEY: ${{contains('Hello world', 'llo')}}
 
 jobs:
     print-hello-world:
         runs-on: ubuntu-latest
         steps:
             - name: Print search key
-              run: echo ${{env.SEARCHKEY}}
+              run: echo ${{env.SEARCH_KEY}}
