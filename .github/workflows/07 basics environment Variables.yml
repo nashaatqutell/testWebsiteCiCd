@@ -29,3 +29,7 @@ jobs:
           env:
             phone: 0123456789
           run: echo "my phone number is ${{env.phone}}"
+
+          # wrong way
+        - name: Print skills
+          run: echo "my skills are ${{env.skills}}"
