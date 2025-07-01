@@ -1,0 +1,13 @@
+name: 011 Basics Workflow Expression CI/CD
+on:
+    workflow_dispatch:
+
+env:
+    SEARCHKEY:${{contains('Hello world', 'llo')}}
+
+jobs:
+    print-hello-world:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print search key
+              run: echo ${{env.SEARCHKEY}}
