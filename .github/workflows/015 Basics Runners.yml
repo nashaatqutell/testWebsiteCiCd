@@ -1,0 +1,9 @@
+name: 015 Basics Runners CI/CD
+on:
+    workflow_dispatch:
+jobs:
+    print-hello-world:
+        runs-on: [self-hosted,Windows,X64,runner1]
+        steps:
+            - name: Print Hello World
+              run: echo "Hello World"
