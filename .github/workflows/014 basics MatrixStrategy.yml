@@ -1,20 +1,25 @@
 name: 014 basics MatrixStrategy CI/CD
+
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    print-hello-world:
-        runs-on: ubuntu-latest
-        strategy:
-          max-parallel: 2  # Limit the maximum number of jobs that can run in parallel
-          matrix:
-            os: [windows-latest, macos-latest, ubuntu-latest]
-            node-version: [10, 12, 14]
-          exclude:
-            - os: macos-latest
-              node-version: [10,12]
-            - os: windows-latest
-              node-version: [14]
-        steps:
-            - name: Print Hello World
-              run: echo "Hello World"
+  print-hello-world:
+    strategy:
+      max-parallel: 2
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        node-version: [10, 12, 14]
+        exclude:
+          - os: macos-latest
+            node-version: 10
+          - os: macos-latest
+            node-version: 12
+          - os: windows-latest
+            node-version: 14
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World from OS=${{ matrix.os }} and Node=${{ matrix['node-version'] }}"
