@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
 
 env:
-    SEARCH_KEY: ${{contains('Hello world', 'llo')}}
+    SEARCH_KEY: ${{contains('Hello world', 'word') && 'the key exists' || 'the key does not exist'}}
 
 jobs:
     print-hello-world:
