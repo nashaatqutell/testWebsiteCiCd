@@ -5,10 +5,10 @@ jobs:
     print-hello-world:
         runs-on: ubuntu-latest
         steps:
-            - name: install php 7.2
-              uses: nanasess/setup-php@v4
-              with:
-                php-version: '7.2'
+#            - name: install php 7.2
+#              uses: nanasess/setup-php@v4 # customize software runner (خلى php الى على runner بتاعى php 7.2)
+#              with:
+#                php-version: '7.2'
 
             - name: Print php version
               run: php -v
