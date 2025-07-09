@@ -9,3 +9,6 @@ jobs:
               uses: nanasess/setup-php@v4
               with:
                 php-version: '7.2'
+
+            - name: Print php version
+              run: php -v
