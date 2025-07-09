@@ -12,14 +12,3 @@ jobs:
 
             - name: install redis
               run: apt-get update && apt-get install -y redis
-
-    job2:
-        runs-on: ubuntu-latest
-        container:
-          image: ubuntu:latest
-        steps:
-            - name: install redis
-              run: sudo apt-get install -y redis
-
-            - name: access redis
-              run: redis-cli ping
