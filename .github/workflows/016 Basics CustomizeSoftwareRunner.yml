@@ -1,0 +1,11 @@
+name: 016 Basics CustomizeSoftwareRunner CI/CD
+on:
+    workflow_dispatch:
+jobs:
+    print-hello-world:
+        runs-on: ubuntu-latest
+        steps:
+            - name: install php 7.2
+              uses: nanasess/setup-php@v4
+              with:
+                php-version: '7.2'
