@@ -15,8 +15,8 @@ jobs:
 
     job2:
         runs-on: ubuntu-latest
-#        container:
-#          image: redis
+        container:
+          image: redis
         steps:
             - name: access redis
               run: redis-cli ping
