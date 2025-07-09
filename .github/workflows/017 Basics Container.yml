@@ -16,7 +16,7 @@ jobs:
     job2:
         runs-on: ubuntu-latest
         container:
-          image: redis:latest
+          image: ubuntu:latest
         steps:
             - name: install redis
               run: sudo apt-get install -y redis
