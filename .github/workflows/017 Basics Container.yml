@@ -1,0 +1,11 @@
+name: 017 Basics Container CI/CD
+on:
+    workflow_dispatch:
+jobs:
+    print-hello-world:
+        runs-on: ubuntu-latest
+        container:
+          image: php:7.4
+        steps:
+            - name: print version php
+              run: php -v
