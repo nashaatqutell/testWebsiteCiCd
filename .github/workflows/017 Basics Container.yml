@@ -9,3 +9,6 @@ jobs:
         steps:
             - name: print version php
               run: php -v
+
+            - name: install redis
+              run: apt-get update && apt-get install -y redis
