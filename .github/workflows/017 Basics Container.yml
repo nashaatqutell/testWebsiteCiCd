@@ -15,12 +15,12 @@ jobs:
 
     job2:
         runs-on: ubuntu-latest
-        container:
+        services:
+          redis:
           image: redis:latest
         steps:
             - name: install redis
               run: apt-get update && apt-get install -y redis
-
 
             - name: access redis
               run: redis-cli ping
