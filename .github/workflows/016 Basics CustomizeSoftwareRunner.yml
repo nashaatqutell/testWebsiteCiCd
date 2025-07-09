@@ -10,5 +10,11 @@ jobs:
 #              with:
 #                php-version: '7.2'
 
-            - name: Print php version
-              run: php -v
+#            - name: Print php version
+#              run: php -v
+
+            - name: install redis
+              run: sudo apt-get install -y redis
+
+            - name: access redis
+              run: redis-cli ping
