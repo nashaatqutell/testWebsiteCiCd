@@ -17,7 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         services:
           redis:
-          image: redis:latest
+            image: redis:latest
         steps:
             - name: install redis
               run: apt-get update && apt-get install -y redis
