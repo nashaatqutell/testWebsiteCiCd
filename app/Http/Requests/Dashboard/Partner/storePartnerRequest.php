@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard\Partner;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePartnerRequest extends FormRequest
+class storePartnerRequest extends FormRequest
 {
     public function rules(): array
     {
