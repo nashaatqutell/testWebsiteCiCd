@@ -1,6 +1,9 @@
 name: 019 BasicsGitHubCLI CI/CD
 on:
     workflow_dispatch:
+
+permissions:
+  issues: write
 jobs:
     print-hello-world:
         runs-on: ubuntu-latest
