@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
             SliderSeeder::class,
             HeroSectionSeeder::class,
             AboutSeeder::class
+
+
+
+
+
         ]);
     }
 }
