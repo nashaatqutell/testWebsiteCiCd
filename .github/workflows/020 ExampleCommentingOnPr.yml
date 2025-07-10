@@ -1,22 +1,21 @@
 name: 020 ExampleCommentingOnPr CI/CD
 on:
-    pull_request:
-      types: [closed]
+  pull_request:
+
 
 permissions:
   issues: write
   pull-requests: write
 
-
 jobs:
-    print-hello-world:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout code
-              uses: actions/checkout@v4.2.2
+  print-hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
 
-            - name: comment on pr
-              run: gh pr comment $PR_NUMBER --body "Hi from GitHub CLI"
-              env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                PR_NUMBER: ${{ github.event.pull_request.number }}
+      - name: Comment on PR
+        run: gh pr comment $PR_NUMBER --body "Hi from GitHub CLI"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
