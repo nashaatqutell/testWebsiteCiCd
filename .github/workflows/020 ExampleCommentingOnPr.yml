@@ -5,6 +5,8 @@ on:
 
 permissions:
   issues: write
+
+
 jobs:
     print-hello-world:
         runs-on: ubuntu-latest
@@ -13,6 +15,7 @@ jobs:
               uses: actions/checkout@v4.2.2
 
             - name: comment on pr
-              run: gh pr comment ${{ github.event.pull_request.number }} --body "Hi from GitHub CLI"
+              run: gh pr comment $PR_NUMBER --body "Hi from GitHub CLI"
               env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                PR_NUMBER: ${{ github.event.pull_request.number }}
