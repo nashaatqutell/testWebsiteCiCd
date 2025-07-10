@@ -1,0 +1,14 @@
+name: 020 ExampleCommentingOnPr CI/CD
+on:
+    pull_request:
+      types: [closed]
+
+jobs:
+    print-hello-world:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4.2.2
+
+            - name: comment on pr
+              run: gh pr comment ${{ githbu.event.pull_request.number }} --body "Hi from GitHub CLI"
