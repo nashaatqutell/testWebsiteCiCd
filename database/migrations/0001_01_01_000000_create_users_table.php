@@ -11,6 +11,14 @@ return new class extends Migration
      * Run the migrations.
      */
 
+
+
+
+
+
+
+
+
     use MigrationTrait;
     public function up(): void
     {
@@ -20,10 +28,10 @@ return new class extends Migration
             $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string("code")->nullable();
-            $table->string("expire_code")->nullable();
+            $table->string('code')->nullable();
+            $table->string('expire_code')->nullable();
             $table->string('password');
-            $table->integer('role')->default("2")->comment("1=Admin, 2=user, 3=employee");
+            $table->integer('role')->default('2')->comment('1=Admin, 2=user, 3=employee');
             $this->addGeneralFields($table);
             $table->rememberToken();
             $table->timestamps();

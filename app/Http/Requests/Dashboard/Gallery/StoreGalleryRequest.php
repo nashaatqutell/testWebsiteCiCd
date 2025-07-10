@@ -22,16 +22,16 @@ class StoreGalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "images" => "required|array",
-            "images.*" => "required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240",
-            "added_by_id" => "nullable|exists:users,id",
+            'images' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            'added_by_id' => 'nullable|exists:users,id',
         ];
     }
 
-    public function prepareForValidation() : void
+    public function prepareForValidation(): void
     {
         $this->merge([
-            "added_by_id" => auth()->id(),
+            'added_by_id' => auth()->id(),
         ]);
     }
 }

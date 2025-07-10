@@ -32,7 +32,7 @@ class UpdateWorkRequest extends FormRequest
             $rules["$locale.meta_description"] = 'nullable|string';
             $rules["$locale.classification"] = 'nullable|string|max:255';
         }
+
         return $rules;
     }
-
 }

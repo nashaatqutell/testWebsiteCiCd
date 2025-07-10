@@ -15,14 +15,14 @@ class StaticPageResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
-            'slug'=> $this->slug,
+            'slug' => $this->slug,
             'description' => $this->description,
             'meta_description' => $this->meta_description,
             'image' => url($this->getFirstMediaUrl('staticPage_images')) ?: null,
-            'is_active'=> $this->is_active,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null,
+            'is_active' => $this->is_active,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
             'created_at' => $this?->created_at?->toDateTimeString() ?? null,
         ];
     }

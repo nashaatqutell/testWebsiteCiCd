@@ -8,28 +8,27 @@ use App\Http\Requests\Dashboard\Gallery\UpdateGalleryRequest;
 use App\Models\Gallery\Gallery;
 use App\Service\GalleryService;
 use Exception;
-use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {
-
     private string $routePath = 'admin.galleries';
+
     private string $viewPath = 'dashboard.gallery';
 
-    public function __construct(protected GalleryService $GalleryService = new GalleryService())
+    public function __construct(protected GalleryService $GalleryService = new GalleryService)
     {
-        $this->middleware('permission:show_galleries')->only(['index','show']);
+        $this->middleware('permission:show_galleries')->only(['index', 'show']);
         $this->middleware('permission:create_galleries')->only(['store']);
         $this->middleware('permission:update_galleries')->only(['update']);
         $this->middleware('permission:delete_galleries')->only(['destroy']);
         $this->middleware('permission:active_galleries')->only(['changeStatus']);
     }
 
-
     public function index()
     {
         $Galleries = $this->GalleryService->index('get');
-        return view($this->viewPath . '.index', get_defined_vars());
+
+        return view($this->viewPath.'.index', get_defined_vars());
     }
 
     /**
@@ -37,7 +36,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view($this->viewPath . '.single');
+        return view($this->viewPath.'.single');
     }
 
     /**
@@ -46,7 +45,8 @@ class GalleryController extends Controller
     public function store(StoreGalleryRequest $request)
     {
         $Gallery = $this->GalleryService->store($request);
-        return $this->webSuccessResponse(route: $this->routePath . '.index', message: __("messages.success"));
+
+        return $this->webSuccessResponse(route: $this->routePath.'.index', message: __('messages.success'));
     }
 
     /**
@@ -54,7 +54,7 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $Gallery)
     {
-        return view($this->viewPath . '.single', get_defined_vars());
+        return view($this->viewPath.'.single', get_defined_vars());
     }
 
     /**
@@ -63,7 +63,8 @@ class GalleryController extends Controller
     public function update(UpdateGalleryRequest $request, Gallery $Gallery)
     {
         $Gallery = $this->GalleryService->update($request, $Gallery);
-        return $this->webSuccessResponse(route: $this->routePath . '.index', message: __("messages.update"));
+
+        return $this->webSuccessResponse(route: $this->routePath.'.index', message: __('messages.update'));
     }
 
     /**
@@ -73,14 +74,15 @@ class GalleryController extends Controller
     {
         try {
             $this->GalleryService->destroy($Gallery);
+
             return response()->json([
                 'success' => true,
-                'message' => __('Keys.deleted')
+                'message' => __('Keys.deleted'),
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => __('keys.something_wrong')
+                'message' => __('keys.something_wrong'),
             ], 500);
         }
 
@@ -89,6 +91,7 @@ class GalleryController extends Controller
     public function changeStatus(Gallery $Gallery)
     {
         $this->GalleryService->changeStatus($Gallery);
+
         return response()->json([
             'success' => true,
             'message' => __('keys.status_updated'),

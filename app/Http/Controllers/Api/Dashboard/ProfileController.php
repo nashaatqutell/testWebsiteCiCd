@@ -12,15 +12,17 @@ class ProfileController extends Controller
         $this->middleware('permission:show_profiles')->only(['show']);
         $this->middleware('permission:update_profiles')->only(['update']);
     }
+
     public function update(UpdateProfileRequest $request)
     {
         $user = auth()->user();
         $user->update($request->validated());
-        return $this->successResponse(data: $user->getResource(), message: __("messages.update"));
+
+        return $this->successResponse(data: $user->getResource(), message: __('messages.update'));
     }
 
     public function show()
     {
-        return $this->successResponse(data: auth()->user()->getResource(),message: __("messages.fetched_successfully"));
+        return $this->successResponse(data: auth()->user()->getResource(), message: __('messages.fetched_successfully'));
     }
 }

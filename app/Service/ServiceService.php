@@ -2,15 +2,16 @@
 
 namespace App\Service;
 
-use App\Models\Service\Service;
-use App\Http\Requests\Dashboard\Services\UpdateServiceRequest;
 use App\Http\Requests\Dashboard\Services\StoreServiceRequest;
+use App\Http\Requests\Dashboard\Services\UpdateServiceRequest;
+use App\Models\Service\Service;
 
 class ServiceService
 {
     public function index($query)
     {
         $servicesQuery = Service::query()->latest();
+
         return $query === 'paginate' ? $servicesQuery->paginate(10) : $servicesQuery->get();
     }
 
@@ -32,6 +33,7 @@ class ServiceService
         $service->storeImages(media: $request->file('images'), collection: 'service_images');
 
         $service->storeVideos(media: $request->file('video'), collection: 'service_videos');
+
         return $service;
     }
 
@@ -42,6 +44,7 @@ class ServiceService
         $service->update($validateData);
         $service->storeImages(media: $request->file('images'), update: true, collection: 'service_images');
         $service->storeVideos(media: $request->file('video'), update: true, collection: 'service_videos');
+
         return $service;
     }
 
@@ -55,11 +58,14 @@ class ServiceService
     public function changeStatus(Service $service): Service
     {
         $service->toggleActivation();
+
         return $service;
     }
+
     public function changeStatusFront(Service $service): Service
     {
         $service->toggleStatus();
+
         return $service;
     }
 }

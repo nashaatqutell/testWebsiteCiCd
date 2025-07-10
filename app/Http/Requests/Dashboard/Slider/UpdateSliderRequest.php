@@ -30,6 +30,7 @@ class UpdateSliderRequest extends FormRequest
             $rules["$locale.name"] = 'sometimes|string|max:255';
             $rules["$locale.description"] = 'sometimes|string';
         }
+
         return $rules;
     }
 }

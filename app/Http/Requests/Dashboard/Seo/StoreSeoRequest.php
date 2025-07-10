@@ -16,15 +16,13 @@ class StoreSeoRequest extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
-        $rules =  [
-            "slug" => ["required", "string", "max:255", Rule::unique("seos", "slug")->whereNull("deleted_at")],
-            "page_name" => "required|string|max:255",
-            "is_active" => "nullable|boolean",
+        $rules = [
+            'slug' => ['required', 'string', 'max:255', Rule::unique('seos', 'slug')->whereNull('deleted_at')],
+            'page_name' => 'required|string|max:255',
+            'is_active' => 'nullable|boolean',
         ];
-
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.meta_name"] = 'required|string';
@@ -35,10 +33,10 @@ class StoreSeoRequest extends FormRequest
         return $rules;
     }
 
-    public function prepareForValidation() : void
+    public function prepareForValidation(): void
     {
         $this->merge([
-            "slug" => Str::slug($this->slug),
+            'slug' => Str::slug($this->slug),
         ]);
     }
 }

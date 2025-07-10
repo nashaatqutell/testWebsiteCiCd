@@ -17,8 +17,8 @@ class FaqResource extends JsonResource
         return [
             'id' => $this->id,
             'question' => $this->question,
-            'answer' =>$this->answer,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null
+            'answer' => $this->answer,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

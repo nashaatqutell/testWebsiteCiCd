@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use App\Http\Requests\Dashboard\JobsHierarchy\UpdateJobHierarchyRequest;
@@ -9,6 +10,7 @@ class JobService
     public function index($query)
     {
         $jobs = JobHierarchy::query()->latest();
+
         return $query === 'paginate' ? $jobs->paginate(10) : $jobs->get();
     }
 
@@ -26,6 +28,7 @@ class JobService
     {
         $job = JobHierarchy::create($data + ['added_by_id' => auth()->user()->id]);
         $job->storeImages(media: $data['image'], collection: 'job_images');
+
         return $job;
 
     }
@@ -35,6 +38,7 @@ class JobService
         $validateData = collect($request->validated())->except(['image'])->toArray();
         $job->update($validateData);
         $job->storeImages(media: $request->file('image'), update: true, collection: 'job_images');
+
         return $job;
     }
 
@@ -47,6 +51,7 @@ class JobService
     public function changeStatus(JobHierarchy $job): JobHierarchy
     {
         $job->toggleActivation();
+
         return $job;
     }
 }

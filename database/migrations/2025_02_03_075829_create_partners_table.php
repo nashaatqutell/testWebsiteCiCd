@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     use MigrationTrait;
+
     /**
      * Run the migrations.
      */
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::create('partner_translations', function (Blueprint $table) {
-            $table->id();  
+            $table->id();
             $table->foreignId('partner_id')->constrained()->onDelete('cascade');
             $table->string('locale')->index();
             $table->string('name');

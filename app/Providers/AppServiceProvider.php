@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Providers;
+
 use App\Enums\About\TypeEnum;
 use App\Models\Setting\Setting;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

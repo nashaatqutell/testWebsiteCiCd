@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Partner\Partner;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PartnerSeeder extends Seeder
 {
@@ -24,8 +23,8 @@ class PartnerSeeder extends Seeder
                     ],
                     'ar' => [
                         'name' => 'شريك',
-                    ]
-                ]
+                    ],
+                ],
             ],
         ];
 
@@ -36,5 +35,4 @@ class PartnerSeeder extends Seeder
             $partner->update($translations);
         }
     }
-    
 }

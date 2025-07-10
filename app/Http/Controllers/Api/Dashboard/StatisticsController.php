@@ -10,10 +10,10 @@ class StatisticsController extends Controller
 {
     public function getStatistics()
     {
-        $usersCount  = User::where('role', 2)->count();
+        $usersCount = User::where('role', 2)->count();
         $employeesCount = User::where('role', 3)->count();
-        $contactUsNew = Contact::where('status',1)->count();
-        $contactUsReplied = Contact::where('status',0)->count();
+        $contactUsNew = Contact::where('status', 1)->count();
+        $contactUsReplied = Contact::where('status', 0)->count();
 
         $data = [
             'users_Count' => $usersCount,

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTestimonialRequest extends FormRequest
 {
-
     public function rules(): array
     {
         $rules = [
@@ -18,6 +17,7 @@ class StoreTestimonialRequest extends FormRequest
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.description"] = 'required|string|max:999999';
         }
+
         return $rules;
     }
 }

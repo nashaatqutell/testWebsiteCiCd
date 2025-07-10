@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class WorkTranslation extends Model
 {
     use SoftDeletes;
+
     public $timestamps = false;
-    protected $fillable = ['name', 'description', 'meta_description','classification'];
+
+    protected $fillable = ['name', 'description', 'meta_description', 'classification'];
 }

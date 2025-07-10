@@ -6,7 +6,7 @@ class EnumFactory
 {
     public static function getName(string $enumClass, mixed $value): ?string
     {
-        if (!enum_exists($enumClass)) {
+        if (! enum_exists($enumClass)) {
             return null;
         }
 
@@ -18,9 +18,10 @@ class EnumFactory
 
         return null;
     }
-    public static function getValue(string $enumClass, string $name = null): mixed
+
+    public static function getValue(string $enumClass, ?string $name = null): mixed
     {
-        if (!enum_exists($enumClass)) {
+        if (! enum_exists($enumClass)) {
             return null;
         }
 
@@ -32,6 +33,4 @@ class EnumFactory
 
         return null;
     }
-
-
 }

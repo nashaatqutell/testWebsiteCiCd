@@ -4,11 +4,9 @@ namespace App\Http\Filters;
 
 class TestimonialFilter extends BaseFilters
 {
-
     protected $filters = [
         'name',
     ];
-
 
     protected function name($value)
     {

@@ -27,12 +27,14 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = $this->faqService->getAllFaqs('paginate');
+
         return $this->paginateResponse(FaqResource::collection($faqs), $faqs);
     }
 
     public function store(StoreFaqRequest $request)
     {
         $faq = $this->faqService->storeFaq($request->validated());
+
         return $this->successResponse(data: $faq->getResource(), message: __('messages.success'));
     }
 
@@ -44,18 +46,21 @@ class FaqController extends Controller
     public function update(UpdateFaqRequest $request, Faq $faq)
     {
         $faq = $this->faqService->updateFaq($faq, $request->validated());
+
         return $this->successResponse(data: $faq->getResource(), message: __('messages.update'));
     }
 
     public function destroy(Faq $faq)
     {
         $this->faqService->deleteFaq($faq);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(Faq $faq)
     {
         $this->faqService->toggleFaqStatus($faq);
+
         return $this->successResponse(message: __('messages.update'));
     }
 }

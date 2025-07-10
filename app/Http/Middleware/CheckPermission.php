@@ -9,11 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermission
 {
-    
     public function handle(Request $request, Closure $next, $permission): Response
     {
-        if (Auth::check() && Auth::user()->hasPermissionTo($permission))
-        {
+        if (Auth::check() && Auth::user()->hasPermissionTo($permission)) {
             return $next($request);
         }
         abort(403, 'Unauthorized');

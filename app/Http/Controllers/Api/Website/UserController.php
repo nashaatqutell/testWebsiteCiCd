@@ -16,6 +16,7 @@ class UserController extends Controller
     public function __invoke()
     {
         $users = User::query()->latest()->whereIsActive()->whereRole(RoleEnum::User->value)->get();
-        return $this->successResponse(data: UserResource::collection($users),message: __("messages.fetched_successfully"));
+
+        return $this->successResponse(data: UserResource::collection($users), message: __('messages.fetched_successfully'));
     }
 }

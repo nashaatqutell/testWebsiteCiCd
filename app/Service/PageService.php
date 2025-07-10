@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service;
+
 use App\Http\Requests\Dashboard\Page\StorePageRequest;
 use App\Http\Requests\Dashboard\Page\UpdatePageRequest;
 use App\Models\Page\Page;
@@ -10,6 +11,7 @@ class PageService
     public function index($query)
     {
         $pageQuery = Page::with('service')->latest();
+
         return $query === 'paginate' ? $pageQuery->paginate(10) : $pageQuery->get();
     }
 
@@ -28,6 +30,7 @@ class PageService
         $validatedDate = collect($request->validated())->except('image')->toArray();
         $page = Page::create($validatedDate + ['added_by_id' => auth()->id()]);
         $page->storeImages(media: $request->file('image'), collection: 'Page_images');
+
         return $page;
     }
 
@@ -36,6 +39,7 @@ class PageService
         $validatedDate = collect($request->validated())->except('image')->toArray();
         $page->update($validatedDate);
         $page->storeImages(media: $request->file('image'), update: true, collection: 'Page_images');
+
         return $page;
     }
 
@@ -48,6 +52,7 @@ class PageService
     public function changeStatus(Page $page)
     {
         $page->toggleActivation();
+
         return $page;
     }
 }

@@ -7,12 +7,11 @@ use App\Models\BaseModel;
 
 class Gallery extends BaseModel
 {
-
     protected $table = 'galleries';
 
     protected $fillable = [
         'is_active',
-        "added_by_id"
+        'added_by_id',
     ];
 
     public function getResource(): GalleryResource

@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use App\Enums\User\ActiveEnum;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HeroSectionResource extends JsonResource
@@ -23,14 +23,14 @@ class HeroSectionResource extends JsonResource
         }
 
         return [
-            "id" => $this->id,
-            "name" => $this->name,
-            "description" => $this->description,
-            "sub_description" => $this->sub_description,
-            "image" => $media,
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'sub_description' => $this->sub_description,
+            'image' => $media,
             'media_type' => $this->media_type,
             'is_active' => ActiveEnum::getValue($this->is_active),
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

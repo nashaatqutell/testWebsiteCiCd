@@ -27,21 +27,21 @@ class UpdateServiceRequest extends FormRequest
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:10240',
             'is_active' => 'nullable|boolean',
             'status' => 'nullable|boolean',
-            "parent_id" => "nullable|exists:services,id"
+            'parent_id' => 'nullable|exists:services,id',
         ];
-
 
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.name"] = 'sometimes|string|max:255';
             $rules["$locale.description"] = 'sometimes|string';
         }
+
         return $rules;
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            "parent_id" => $this->parent_id == "" ? null : $this->parent_id
+            'parent_id' => $this->parent_id == '' ? null : $this->parent_id,
         ]);
     }
 }

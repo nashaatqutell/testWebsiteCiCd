@@ -31,6 +31,7 @@ class UpdateStaticPageRequest extends FormRequest
             $rules["$locale.description"] = 'sometimes|string';
             $rules["$locale.meta_description"] = 'sometimes|string';
         }
+
         return $rules;
     }
 }

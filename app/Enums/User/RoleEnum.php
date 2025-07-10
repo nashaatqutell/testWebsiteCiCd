@@ -2,7 +2,7 @@
 
 namespace App\Enums\User;
 
-enum RoleEnum : int
+enum RoleEnum: int
 {
     case Admin = 1;
     case User = 2;
@@ -20,6 +20,7 @@ enum RoleEnum : int
     public static function getValue(int $key): ?string
     {
         $values = self::values();
+
         return $values[$key] ?? null;
     }
 }

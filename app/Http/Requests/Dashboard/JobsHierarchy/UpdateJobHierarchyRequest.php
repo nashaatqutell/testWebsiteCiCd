@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Dashboard\JobsHierarchy;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,23 +22,25 @@ class UpdateJobHierarchyRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
-            "parent_id"   => "nullable|exists:job_hierarchies,id",
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            'parent_id' => 'nullable|exists:job_hierarchies,id',
             'added_by_id' => 'nullable|exists:users,id',
         ];
 
         foreach (config('translatable.locales') as $locale) {
-            $rules["$locale.name"]        = 'sometimes|string|max:255';
-            $rules["$locale.position"]    = 'sometimes|string';
+            $rules["$locale.name"] = 'sometimes|string|max:255';
+            $rules["$locale.position"] = 'sometimes|string';
             $rules["$locale.description"] = 'sometimes|string';
         }
+
         return $rules;
 
     }
+
     protected function prepareForValidation(): void
     {
         $this->merge([
-            "parent_id" => $this->parent_id == "" ? null : $this->parent_id,
+            'parent_id' => $this->parent_id == '' ? null : $this->parent_id,
         ]);
     }
 }

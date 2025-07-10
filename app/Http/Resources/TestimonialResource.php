@@ -19,7 +19,7 @@ class TestimonialResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'image' => url($this->getFirstMediaUrl('testimonial_images')) ?: null,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

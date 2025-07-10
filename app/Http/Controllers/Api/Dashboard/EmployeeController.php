@@ -14,7 +14,7 @@ class EmployeeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:show_employees')->only(['index','show']);
+        $this->middleware('permission:show_employees')->only(['index', 'show']);
         $this->middleware('permission:create_employees')->only(['store']);
         $this->middleware('permission:update_employees')->only(['update']);
         $this->middleware('permission:delete_employees')->only(['destroy']);
@@ -24,6 +24,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = User::filter()->latest()->whereRole(RoleEnum::Employee->value)->paginate();
+
         return $this->paginateResponse(
             data: UserResource::collection($employees),
             collection: $employees
@@ -33,37 +34,40 @@ class EmployeeController extends Controller
     public function list()
     {
         $employees = User::query()->latest()->whereRole(RoleEnum::Employee->value)->get();
-        return $this->successResponse(data: SimpleDataResource::collection($employees),message: __("messages.fetched_successfully"));
+
+        return $this->successResponse(data: SimpleDataResource::collection($employees), message: __('messages.fetched_successfully'));
     }
 
     public function store(StoreEmployeeRequest $request)
     {
         $employee = User::query()->create($request->validated());
-        return $this->successResponse(data: $employee->getResource(), message: __("messages.success"));
+
+        return $this->successResponse(data: $employee->getResource(), message: __('messages.success'));
     }
 
     public function show(User $employee)
     {
-        return $this->successResponse(data: UserResource::make($employee),message: __("messages.fetched_successfully"));
+        return $this->successResponse(data: UserResource::make($employee), message: __('messages.fetched_successfully'));
     }
 
     public function update(UpdateEmployeeRequest $request, User $employee)
     {
         $employee->update($request->validated());
-        return $this->successResponse(data: $employee->getResource(), message: __("messages.update"));
+
+        return $this->successResponse(data: $employee->getResource(), message: __('messages.update'));
     }
 
     public function destroy(User $employee)
     {
         $employee->delete();
-        return $this->successResponse(message: __("messages.delete"));
+
+        return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(User $employee)
     {
         $employee->toggleActivation();
-        return $this->successResponse(message: __("messages.update"));
+
+        return $this->successResponse(message: __('messages.update'));
     }
-
-
 }

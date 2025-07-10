@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use App\Http\Requests\Dashboard\Categories\UpdateCategoryRequest;
@@ -9,6 +10,7 @@ class CategoryService
     public function getAllCategories($query)
     {
         $categoriesQuery = Category::filter()->latest();
+
         return $query === 'paginate' ? $categoriesQuery->paginate(10) : $categoriesQuery->get();
     }
 
@@ -21,6 +23,7 @@ class CategoryService
     {
         $category = Category::create($data + ['added_by_id' => auth()->user()->id]);
         $category->storeImages(media: $data['image'], collection: 'category_images');
+
         return $category;
 
     }
@@ -52,6 +55,7 @@ class CategoryService
     public function toggleCategoryStatus(Category $category)
     {
         $category->toggleActivation();
+
         return $category;
     }
 }

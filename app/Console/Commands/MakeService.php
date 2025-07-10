@@ -8,6 +8,7 @@ use Illuminate\Filesystem\Filesystem;
 class MakeService extends Command
 {
     protected $signature = 'make:service {name} {model}';
+
     protected $description = 'Create a new service class';
 
     public function handle()
@@ -20,6 +21,7 @@ class MakeService extends Command
 
         if (file_exists($path)) {
             $this->error("Service {$name} already exists!");
+
             return false;
         }
 

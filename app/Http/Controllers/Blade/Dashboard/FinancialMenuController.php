@@ -26,22 +26,25 @@ class FinancialMenuController extends Controller
     {
         $financial_menus = FinancialMenu::get();
         $title = __('financial.Financial_Menu');
+
         return view('dashboard.financialMenu.index', compact('financial_menus'));
     }
 
     public function create()
     {
-        $financial_menu = new FinancialMenu();
+        $financial_menu = new FinancialMenu;
+
         return view('dashboard.financialMenu.single', get_defined_vars());
     }
 
     public function store(StoreFinancialMenuRequest $request)
     {
         $this->financialMenuService->store($request);
+
         return redirect()->route('admin.financial_menus.index')->with(
             [
-                "message" => __("messages.success"),
-                "alert-type" => "success",
+                'message' => __('messages.success'),
+                'alert-type' => 'success',
             ]
         );
     }
@@ -54,10 +57,11 @@ class FinancialMenuController extends Controller
     public function update(UpdateFinancialMenuRequest $request, FinancialMenu $financial_menu)
     {
         $this->financialMenuService->update($request, $financial_menu);
+
         return redirect()->route('admin.financial_menus.index')->with(
             [
-                "message" => __("messages.update"),
-                "alert-type" => "success",
+                'message' => __('messages.update'),
+                'alert-type' => 'success',
             ]
         );
     }
@@ -83,10 +87,10 @@ class FinancialMenuController extends Controller
     public function changeStatus(FinancialMenu $financial_menu)
     {
         $this->financialMenuService->changeStatus($financial_menu);
+
         return response()->json([
             'success' => true,
             'message' => __('keys.status_updated_successfully'),
         ]);
     }
-
 }

@@ -19,12 +19,12 @@ class ServiceSeeder extends Seeder
                 'translations' => [
                     'en' => [
                         'name' => 'Web Development',
-                        'description' => 'Building and maintaining websites.'
+                        'description' => 'Building and maintaining websites.',
                     ],
                     'ar' => [
                         'name' => 'تطوير الويب',
-                        'description' => 'بناء وصيانة المواقع الإلكترونية.'
-                    ]
+                        'description' => 'بناء وصيانة المواقع الإلكترونية.',
+                    ],
                 ],
             ],
         ];

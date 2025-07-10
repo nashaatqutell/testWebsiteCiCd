@@ -1,4 +1,5 @@
 <?php
+
 return [
     'activity_log' => 'سجل الأنشطة',
     'model_created' => 'تم إضافة :model',
@@ -23,7 +24,7 @@ return [
     'Slider' => 'شريط التمرير',
     'Testimonial' => 'اراء العملاء',
     'Setting' => 'الإعدادات',
-    'Category' => "فئة",
-    'SubCategory' => "فئة فرعية",
-    'FinancialMenu' => "قائمة مالية",
+    'Category' => 'فئة',
+    'SubCategory' => 'فئة فرعية',
+    'FinancialMenu' => 'قائمة مالية',
 ];

@@ -15,7 +15,6 @@ class Contact extends BaseModel
         return new ContactResource($this->fresh());
     }
 
-
     public function service()
     {
         return $this->belongsTo(Service::class);

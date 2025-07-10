@@ -16,12 +16,12 @@ class PartnerResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'link' => $this->link,
             'image' => url($this->getFirstMediaUrl('partner_images')) ?: null,
             'is_active' => ActiveEnum::getValue($this->is_active),
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

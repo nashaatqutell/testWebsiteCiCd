@@ -11,8 +11,8 @@ class UserFilter extends BaseFilters
      */
     protected $filters = [
         'name',
-        "phone",
-        "role",
+        'phone',
+        'role',
     ];
 
     protected function name($value)
@@ -22,7 +22,7 @@ class UserFilter extends BaseFilters
                 ->when(
                     $this->request->filled('name'),
                     function ($query) use ($value) {
-                        $query->where("name", "like", "%{$value}%");
+                        $query->where('name', 'like', "%{$value}%");
                     }
                 );
         }
@@ -37,7 +37,7 @@ class UserFilter extends BaseFilters
                 ->when(
                     $this->request->filled('phone'),
                     function ($query) use ($value) {
-                        $query->where("phone", "like", "%{$value}%");
+                        $query->where('phone', 'like', "%{$value}%");
                     }
                 );
         }
@@ -52,12 +52,11 @@ class UserFilter extends BaseFilters
                 ->when(
                     $this->request->filled('role'),
                     function ($query) use ($value) {
-                        $query->where("role", $value);
+                        $query->where('role', $value);
                     }
                 );
         }
+
         return $this->builder;
     }
-
-
 }

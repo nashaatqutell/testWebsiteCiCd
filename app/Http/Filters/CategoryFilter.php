@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Filters;
 
 class CategoryFilter extends BaseFilters
@@ -25,8 +26,8 @@ class CategoryFilter extends BaseFilters
                 ->when(
                     $this->request->filled('name'),
                     function ($query) use ($value) {
-                        $query->whereTranslationLike('name', '%' . $value . '%')
-                            ->orWhereTranslationLike('description', '%' . $value . '%');
+                        $query->whereTranslationLike('name', '%'.$value.'%')
+                            ->orWhereTranslationLike('description', '%'.$value.'%');
                     }
                 );
         }

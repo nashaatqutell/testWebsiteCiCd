@@ -15,14 +15,17 @@ class ExportExcelController extends Controller
     {
         $fileName = 'users.xlsx';
         Excel::store(new UsersExport, $fileName, 'public');
-        $downloadUrl = URL::to('/storage/' . $fileName);
+        $downloadUrl = URL::to('/storage/'.$fileName);
+
         return response()->json(['download_url' => $downloadUrl]);
     }
+
     public function exportEmployees()
     {
         $fileName = 'employees.xlsx';
         Excel::store(new EmployeesExport, $fileName, 'public');
-        $downloadUrl = URL::to('/storage/' . $fileName);
+        $downloadUrl = URL::to('/storage/'.$fileName);
+
         return response()->json(['download_url' => $downloadUrl]);
     }
 
@@ -30,7 +33,8 @@ class ExportExcelController extends Controller
     {
         $fileName = 'contacts.xlsx';
         Excel::store(new ContactsExport, $fileName, 'public');
-        $downloadUrl = URL::to('/storage/' . $fileName);
+        $downloadUrl = URL::to('/storage/'.$fileName);
+
         return response()->json(['download_url' => $downloadUrl]);
     }
 }

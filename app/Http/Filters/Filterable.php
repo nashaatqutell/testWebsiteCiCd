@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\App;
  */
 trait Filterable
 {
-    public function scopeFilter($query, BaseFilters $filters = null)
+    public function scopeFilter($query, ?BaseFilters $filters = null)
     {
         if (! $filters) {
             $filters = App::make($this->filter);

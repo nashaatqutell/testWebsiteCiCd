@@ -30,6 +30,7 @@ class StoreSliderRequest extends FormRequest
             $rules["$locale.name"] = 'required|string|max:255';
             $rules["$locale.description"] = 'required|string';
         }
+
         return $rules;
     }
 }

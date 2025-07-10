@@ -15,10 +15,10 @@ class NewsLetterResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "email" => $this->email ?? null,
-            "name" => $this->name ?? null,
-            "phone" => $this->phone ?? null,
+            'id' => $this->id,
+            'email' => $this->email ?? null,
+            'name' => $this->name ?? null,
+            'phone' => $this->phone ?? null,
         ];
     }
 }

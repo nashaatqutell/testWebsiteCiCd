@@ -2,17 +2,16 @@
 
 namespace App\Models\Service;
 
-use App\Models\BaseModel;
-use App\Models\Page\Page;
 use App\Http\Filters\ServiceFilter;
 use App\Http\Resources\ServiceResource;
-use App\Models\Scopes\OrderByOrderScope;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\BaseModel;
 use App\Models\Contact\Contact;
-
+use App\Models\Page\Page;
+use App\Models\Scopes\OrderByOrderScope;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends BaseModel implements TranslatableContract
 {
@@ -23,19 +22,18 @@ class Service extends BaseModel implements TranslatableContract
     public $translatedAttributes = ['name', 'description'];
 
     protected $table = 'services';
+
     protected $filter = ServiceFilter::class;
 
     protected static function booted()
     {
-        static::addGlobalScope(new OrderByOrderScope());
+        static::addGlobalScope(new OrderByOrderScope);
     }
 
     public function getResource(): ServiceResource
     {
         return new ServiceResource($this->fresh());
     }
-
-
 
     public function registerMediaCollections(): void
     {
@@ -53,16 +51,16 @@ class Service extends BaseModel implements TranslatableContract
         return $this->hasMany(Page::class);
     }
 
-    public function parent() : BelongsTo
+    public function parent(): BelongsTo
     {
         return $this->belongsTo(Service::class, 'parent_id');
     }
 
-    public function children() : HasMany
+    public function children(): HasMany
     {
         return $this->hasMany(Service::class, 'parent_id')
             ->whereIsActive()
-            ->orderBy('order','asc');
+            ->orderBy('order', 'asc');
     }
 
     public function getNextNode()
@@ -71,6 +69,7 @@ class Service extends BaseModel implements TranslatableContract
         if ($this->children->count() > 0) {
             $nextNode = $this->children->first();
         }
+
         return $nextNode;
     }
 
@@ -78,7 +77,4 @@ class Service extends BaseModel implements TranslatableContract
     {
         return $this->hasMany(Contact::class);
     }
-
-
-
 }

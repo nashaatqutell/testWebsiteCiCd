@@ -12,13 +12,13 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    private string $routePath = 'admin.roles';
 
-    private string $routePath = "admin.roles";
-    private string $viewPath = "dashboard.roles.";
+    private string $viewPath = 'dashboard.roles.';
 
-    public function __construct(protected RoleService $roleService = new RoleService())
+    public function __construct(protected RoleService $roleService = new RoleService)
     {
-        $this->middleware('permission:show_roles')->only(['index','show']);
+        $this->middleware('permission:show_roles')->only(['index', 'show']);
         $this->middleware('permission:create_roles')->only(['store']);
         $this->middleware('permission:update_roles')->only(['update']);
         $this->middleware('permission:delete_roles')->only(['destroy']);
@@ -28,7 +28,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = $this->roleService->index('get');
-        return view($this->viewPath . 'index', compact('roles'));
+
+        return view($this->viewPath.'index', compact('roles'));
     }
 
     /**
@@ -37,7 +38,8 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = $this->roleService->fetchPermissionTypes();
-        return view($this->viewPath . 'single',get_defined_vars());
+
+        return view($this->viewPath.'single', get_defined_vars());
     }
 
     /**
@@ -47,9 +49,8 @@ class RoleController extends Controller
     {
         $role = $this->roleService->store($request);
 
-        return $this->webSuccessResponse(route: $this->routePath . '.index', message: __("messages.success"));
+        return $this->webSuccessResponse(route: $this->routePath.'.index', message: __('messages.success'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -57,11 +58,11 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $permissions = $this->roleService->fetchPermissionTypes();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$role->id)
-            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $role->id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
 
-        return view($this->viewPath . 'single', get_defined_vars());
+        return view($this->viewPath.'single', get_defined_vars());
     }
 
     /**
@@ -71,7 +72,7 @@ class RoleController extends Controller
     {
         $role = $this->roleService->update($request, $role);
 
-        return $this->webSuccessResponse(route: $this->routePath . '.index', message: __("messages.update"));
+        return $this->webSuccessResponse(route: $this->routePath.'.index', message: __('messages.update'));
     }
 
     /**
@@ -81,14 +82,15 @@ class RoleController extends Controller
     {
         try {
             $this->roleService->destroy($role);
+
             return response()->json([
                 'success' => true,
-                'message' => __("keys.deleted")
+                'message' => __('keys.deleted'),
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => __('keys.something_wrong')
+                'message' => __('keys.something_wrong'),
             ], 500);
         }
     }

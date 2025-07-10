@@ -3,6 +3,7 @@
 namespace App\Service\Notification;
 
 use Illuminate\Notifications\Notification;
+
 class DefaultNotificationData extends Notification
 {
     public function toFcm($notifiable): array
@@ -14,7 +15,7 @@ class DefaultNotificationData extends Notification
                 'body' => 'please call supporter for more information',
             ],
             'data' => [
-                "title" => "new Notification for you",
+                'title' => 'new Notification for you',
             ],
         ];
     }
@@ -40,7 +41,6 @@ class DefaultNotificationData extends Notification
         ];
     }
 
-
     public function toPusher($notifiable): array
     {
         return [
@@ -52,7 +52,4 @@ class DefaultNotificationData extends Notification
             ],
         ];
     }
-
-
 }
-

@@ -16,7 +16,7 @@ class TestimonialController extends Controller
 
     public function __construct(TestimonialService $testimonialService)
     {
-        $this->middleware('permission:show_testimonials')->only(['index','show']);
+        $this->middleware('permission:show_testimonials')->only(['index', 'show']);
         $this->middleware('permission:create_testimonials')->only(['store']);
         $this->middleware('permission:update_testimonials')->only(['update']);
         $this->middleware('permission:delete_testimonials')->only(['destroy']);
@@ -28,18 +28,21 @@ class TestimonialController extends Controller
     public function index()
     {
         $testimonials = $this->testimonialService->getAllTestimonials('paginate');
+
         return $this->paginateResponse(TestimonialResource::collection($testimonials), $testimonials);
     }
 
     public function list()
     {
         $testimonials = $this->testimonialService->listTestimonials();
+
         return $this->successResponse(SimpleDataResource::collection($testimonials));
     }
 
     public function store(StoreTestimonialRequest $request)
     {
         $testimonial = $this->testimonialService->storeTestimonial($request->validated());
+
         return $this->successResponse(data: $testimonial->getResource(), message: __('messages.success'));
     }
 
@@ -51,18 +54,21 @@ class TestimonialController extends Controller
     public function update(UpdateTestimonialRequest $request, Testimonial $testimonial)
     {
         $testimonial = $this->testimonialService->updateTestimonial($testimonial, $request->validated());
+
         return $this->successResponse(data: $testimonial->getResource(), message: __('messages.update'));
     }
 
     public function destroy(Testimonial $testimonial)
     {
         $this->testimonialService->deleteTestimonial($testimonial);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(Testimonial $testimonial)
     {
         $this->testimonialService->toggleTestimonialStatus($testimonial);
+
         return $this->successResponse(message: __('messages.update'));
     }
 }

@@ -14,16 +14,16 @@ class OtpRequest extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
         $data = [
-            "email" => "required|email|exists:users,email",
+            'email' => 'required|email|exists:users,email',
         ];
 
-        if ($this->route()->getName() == "check_otp") {
-            $data["code"] = "required|exists:users,code";
+        if ($this->route()->getName() == 'check_otp') {
+            $data['code'] = 'required|exists:users,code';
         }
+
         return $data;
     }
 }

@@ -20,13 +20,14 @@ class UpdateHeroSectionRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:40960',
             'is_active' => 'nullable|boolean',
-            'media_type' => 'nullable|in:image,video'
+            'media_type' => 'nullable|in:image,video',
         ];
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.name"] = 'sometimes|string|max:255';
             $rules["$locale.description"] = 'sometimes|string';
             $rules["$locale.sub_description"] = 'sometimes|string';
         }
+
         return $rules;
     }
 }

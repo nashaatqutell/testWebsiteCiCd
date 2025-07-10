@@ -14,18 +14,18 @@ class UpdateSettingRequest extends FormRequest
 
     public function rules(): array
     {
-        $rules =  [
-            "email" => ["nullable", "email",Rule::unique("settings", "email")->ignore($this->setting)],
-            "phone" => ["nullable", Rule::unique("settings", "phone")->ignore($this->setting), "different:phone2"],
-            "phone2" => ["nullable", Rule::unique("settings", "phone2")->ignore($this->setting), "different:phone"],
-            "location" => ["nullable"],
-            "embed_map" => ["nullable"],
-            "facebook" => ["nullable"],
-            "instagram" => ["nullable"],
-            "youtube" => ["nullable"],
-            "tiktok" => ["nullable"],
-            "whatsapp" => ["nullable"],
-            "x" => ["nullable"],
+        $rules = [
+            'email' => ['nullable', 'email', Rule::unique('settings', 'email')->ignore($this->setting)],
+            'phone' => ['nullable', Rule::unique('settings', 'phone')->ignore($this->setting), 'different:phone2'],
+            'phone2' => ['nullable', Rule::unique('settings', 'phone2')->ignore($this->setting), 'different:phone'],
+            'location' => ['nullable'],
+            'embed_map' => ['nullable'],
+            'facebook' => ['nullable'],
+            'instagram' => ['nullable'],
+            'youtube' => ['nullable'],
+            'tiktok' => ['nullable'],
+            'whatsapp' => ['nullable'],
+            'x' => ['nullable'],
         ];
 
         foreach (config('translatable.locales') as $locale) {

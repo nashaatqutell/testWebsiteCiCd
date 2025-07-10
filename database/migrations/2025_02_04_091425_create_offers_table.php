@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     use MigrationTrait;
+
     public function up(): void
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string("price")->nullable();
-            $table->integer("discount_percent")->default(0);
+            $table->string('price')->nullable();
+            $table->integer('discount_percent')->default(0);
             $this->addGeneralFields($table);
             $table->timestamps();
         });
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('offer_id')->references('id')->on('offers')->cascadeOnDelete();
             $table->string('locale')->index();
             $table->string('name')->nullable();
-            $table->string("description")->nullable();
+            $table->string('description')->nullable();
             $table->unique(['offer_id', 'locale']);
         });
     }

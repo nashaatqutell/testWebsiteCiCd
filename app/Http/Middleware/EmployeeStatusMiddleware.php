@@ -13,10 +13,10 @@ class EmployeeStatusMiddleware
         $user = auth()->user();
         $is_active = $user->is_active ?? false;
 
-        if (!$user || !$is_active) {
+        if (! $user || ! $is_active) {
             return response()->json([
                 'success' => false,
-                'message' => 'Your account is not active. Please contact support.'
+                'message' => 'Your account is not active. Please contact support.',
             ], 403);
         }
 

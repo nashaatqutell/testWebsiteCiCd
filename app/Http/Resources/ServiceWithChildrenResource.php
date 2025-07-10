@@ -15,7 +15,7 @@ class ServiceWithChildrenResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'child_services' => SimpleDataResource::collection($this->children) ?? [],
         ];

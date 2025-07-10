@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 
 class BlogController extends Controller
 {
-    public function __construct(protected BlogService $blogService = new BlogService())
+    public function __construct(protected BlogService $blogService = new BlogService)
     {
         $this->middleware('permission:show_blogs')->only(['index', 'show']);
         $this->middleware('permission:create_blogs')->only(['store']);
@@ -25,6 +25,7 @@ class BlogController extends Controller
     public function index(): JsonResponse
     {
         $blogs = $this->blogService->index('paginate');
+
         return $this->paginateResponse(
             data: BlogResource::collection($blogs),
             collection: $blogs
@@ -34,6 +35,7 @@ class BlogController extends Controller
     public function list()
     {
         $blogs = $this->blogService->list();
+
         return $this->successResponse(SimpleDataResource::collection($blogs));
     }
 
@@ -45,24 +47,28 @@ class BlogController extends Controller
     public function store(storeBlogRequest $request): JsonResponse
     {
         $blog = $this->blogService->store($request);
-        return $this->successResponse(data: $blog->getResource(), message: __("messages.success"));
+
+        return $this->successResponse(data: $blog->getResource(), message: __('messages.success'));
     }
 
     public function update(updateBlogRequest $request, Blog $blog): JsonResponse
     {
         $blog = $this->blogService->update($request, $blog);
-        return $this->successResponse(data: $blog->getResource(), message: __("messages.update"));
+
+        return $this->successResponse(data: $blog->getResource(), message: __('messages.update'));
     }
 
     public function destroy(Blog $blog): JsonResponse
     {
         $this->blogService->destroy($blog);
-        return $this->successResponse(message: __("messages.delete"));
+
+        return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(Blog $blog)
     {
         $blog = $this->blogService->changeStatus($blog);
+
         return $this->successResponse(message: __('messages.status_updated_successfully'));
     }
 }

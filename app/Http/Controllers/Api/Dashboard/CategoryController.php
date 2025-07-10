@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
@@ -23,21 +24,25 @@ class CategoryController extends Controller
 
         $this->categoryService = $categoryService;
     }
+
     public function index()
     {
         $categories = $this->categoryService->getAllCategories('paginate');
+
         return $this->paginateResponse(CategoryResource::collection($categories), $categories);
     }
 
     public function list()
     {
         $categories = $this->categoryService->listCategories();
+
         return $this->successResponse(SimpleDataResource::collection($categories));
     }
 
     public function store(StoreCategoryRequest $request)
     {
         $category = $this->categoryService->storeCategory($request->validated());
+
         return $this->successResponse(data: $category->getResource(), message: __('messages.success'));
     }
 
@@ -48,20 +53,22 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category =  $this->categoryService->updateCategory($request, $category);
+        $category = $this->categoryService->updateCategory($request, $category);
+
         return $this->successResponse(data: $category->getResource(), message: __('messages.update'));
     }
 
     public function destroy(Category $category)
     {
         $this->categoryService->deleteCategory($category);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(Category $category)
     {
         $this->categoryService->toggleCategoryStatus($category);
+
         return $this->successResponse(message: __('messages.update'));
     }
-
 }

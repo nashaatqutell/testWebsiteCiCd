@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-
     public function __invoke(Request $request)
     {
         $faqs = Faq::whereIsActive()->latest()->get();
+
         return $this->successResponse(FaqResource::collection($faqs));
     }
 }

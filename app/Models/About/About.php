@@ -3,7 +3,6 @@
 namespace App\Models\About;
 
 use App\Http\Filters\AboutFilter;
-
 use App\Http\Resources\AboutResource;
 use App\Models\BaseModel;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -17,10 +16,10 @@ class About extends BaseModel implements TranslatableContract
     {
         return new AboutResource($this->fresh());
     }
-    public $translatedAttributes = ['name','description','meta_title','meta_description'];
+
+    public $translatedAttributes = ['name', 'description', 'meta_title', 'meta_description'];
 
     protected $guarded = ['id'];
 
     protected $filter = AboutFilter::class;
-
 }

@@ -4,11 +4,9 @@ namespace App\Http\Filters;
 
 class AboutFilter extends BaseFilters
 {
-
     protected $filters = [
         'type',
     ];
-
 
     protected function type($value)
     {

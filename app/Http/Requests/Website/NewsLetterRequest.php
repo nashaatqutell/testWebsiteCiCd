@@ -17,9 +17,9 @@ class NewsLetterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => "nullable|email",
-            "phone" => "nullable|string",
-            "name" => "required|string",
+            'email' => 'nullable|email',
+            'phone' => 'nullable|string',
+            'name' => 'required|string',
         ];
     }
 }

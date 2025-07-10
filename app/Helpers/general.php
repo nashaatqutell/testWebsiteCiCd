@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\HeroSection\HeroSection;
 use App\Models\Setting\Setting;
 use Carbon\Carbon;
@@ -10,7 +9,7 @@ function convertCreatedAt($createdAt = null): ?string
     return $createdAt ? Carbon::parse($createdAt)->format('Y-m-d') : null;
 }
 
-if (!function_exists('generate_unique_code')) {
+if (! function_exists('generate_unique_code')) {
     function generate_unique_code($model, $col = 'code', $length = 4, $letter_type = null): string
     {
         $characters = '';
@@ -37,14 +36,14 @@ if (!function_exists('generate_unique_code')) {
         if ($model::where($col, $generate_random_code)->exists()) {
             generate_unique_code($model, $col, $length, $letter_type);
         }
+
         return $generate_random_code;
     }
 }
 
-
 function convertToArray($data): array
 {
-    return is_array($data) && !empty($data) ? $data : [$data] ?? [];
+    return is_array($data) && ! empty($data) ? $data : [$data] ?? [];
 }
 
 function getFirstSettingId(): int

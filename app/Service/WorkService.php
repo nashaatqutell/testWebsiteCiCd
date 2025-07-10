@@ -2,29 +2,30 @@
 
 namespace App\Service;
 
-use App\Models\Work\Work;
 use App\Http\Requests\Dashboard\Work\StoreWorkRequest;
 use App\Http\Requests\Dashboard\Work\UpdateWorkRequest;
+use App\Models\Work\Work;
 
 class WorkService
 {
     public function index($query)
     {
         $workQuery = Work::query()->latest();
+
         return $query === 'paginate' ? $workQuery->paginate(10) : $workQuery->get();
     }
 
-    public function list():\Illuminate\Database\Eloquent\Collection
+    public function list(): \Illuminate\Database\Eloquent\Collection
     {
         return Work::query()->latest()->get();
     }
 
-    public function show(Work $work) : Work
+    public function show(Work $work): Work
     {
         return $work;
     }
 
-    public function store(StoreWorkRequest $request) : Work
+    public function store(StoreWorkRequest $request): Work
     {
         $validateData = collect($request->validated())->except(['images', 'video'])->toArray();
         $work = Work::create($validateData + ['added_by_id' => auth()->id()]);
@@ -36,7 +37,7 @@ class WorkService
         return $work;
     }
 
-    public function update(UpdateWorkRequest $request, Work $work) : Work
+    public function update(UpdateWorkRequest $request, Work $work): Work
     {
         $validatedDate = collect($request->validated())->except(['images', 'video'])->toArray();
         $work->update($validatedDate);
@@ -44,10 +45,11 @@ class WorkService
         $work->storeImages(media: $request->file('images'), update: true, collection: 'work_images');
 
         $work->storeVideos(media: $request->file('video'), update: true, collection: 'work_videos');
+
         return $work;
     }
 
-    public function destroy(Work $work) : void
+    public function destroy(Work $work): void
     {
         $work->delete();
         $work->clearMediaCollection('work_images');

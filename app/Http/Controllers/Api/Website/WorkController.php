@@ -15,6 +15,7 @@ class WorkController extends Controller
     public function __invoke(Request $request)
     {
         $works = Work::whereIsActive()->latest()->get();
+
         return $this->successResponse(WorkResource::collection($works));
     }
 }

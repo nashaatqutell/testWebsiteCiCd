@@ -7,23 +7,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     use MigrationTrait;
+
     public function up(): void
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string("email")->nullable();
-            $table->string("phone")->nullable();
-            $table->string("phone2")->nullable();
-            $table->string("support_phone")->nullable();
-            $table->string("location")->nullable();
-            $table->string("facebook")->nullable();
-            $table->string("x")->nullable();
-            $table->string("instagram")->nullable();
-            $table->string("whatsapp")->nullable();
-            $table->string("youtube")->nullable();
-            $table->string("tiktok")->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('phone2')->nullable();
+            $table->string('support_phone')->nullable();
+            $table->string('location')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('x')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('tiktok')->nullable();
             $this->addGeneralFields($table);
             $table->timestamps();
         });
@@ -31,11 +31,11 @@ return new class extends Migration
         Schema::create('setting_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('setting_id')->constrained('settings')->cascadeOnDelete();
-            $table->string("name")->nullable();
-            $table->longText("description")->nullable();
-            $table->longText("notes_and_suggestions")->nullable();
-            $table->longText("footer_description")->nullable();
-            $table->longText("footer_description2")->nullable();
+            $table->string('name')->nullable();
+            $table->longText('description')->nullable();
+            $table->longText('notes_and_suggestions')->nullable();
+            $table->longText('footer_description')->nullable();
+            $table->longText('footer_description2')->nullable();
             $table->string('locale')->index();
             $table->unique(['setting_id', 'locale']);
             $table->timestamps();

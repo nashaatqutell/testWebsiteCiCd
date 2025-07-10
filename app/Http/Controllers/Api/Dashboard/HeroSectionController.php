@@ -11,6 +11,7 @@ use App\Service\HeroSectionService;
 class HeroSectionController extends Controller
 {
     protected $heroSectionService;
+
     public function __construct(HeroSectionService $heroSectionService)
     {
         $this->heroSectionService = $heroSectionService;
@@ -21,6 +22,7 @@ class HeroSectionController extends Controller
     public function index()
     {
         $heroSections = $this->heroSectionService->index('paginate');
+
         return $this->paginateResponse(HeroSectionResource::collection($heroSections), $heroSections);
     }
 
@@ -28,6 +30,7 @@ class HeroSectionController extends Controller
     {
 
         $heroSection = $this->heroSectionService->update($request, $heroSection);
+
         return $this->successResponse(
             data: $heroSection->getResource(),
             message: __('heroSection.updated_successfully')

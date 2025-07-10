@@ -16,7 +16,7 @@ class AboutController extends Controller
 
     public function __construct(AboutService $aboutService)
     {
-        $this->middleware('permission:show_abouts')->only(['index','show']);
+        $this->middleware('permission:show_abouts')->only(['index', 'show']);
         $this->middleware('permission:create_abouts')->only(['store']);
         $this->middleware('permission:update_abouts')->only(['update']);
         $this->middleware('permission:delete_abouts')->only(['destroy']);
@@ -29,20 +29,20 @@ class AboutController extends Controller
     {
         $abouts = $this->aboutService->getAllAbouts('paginate');
 
-
-
         return $this->paginateResponse(AboutResource::collection($abouts), $abouts);
     }
 
     public function list()
     {
         $abouts = $this->aboutService->listAbouts();
+
         return $this->successResponse(SimpleDataResource::collection($abouts));
     }
 
     public function store(StoreAboutRequest $request)
     {
         $about = $this->aboutService->storeAbout($request->validated());
+
         return $this->successResponse(data: $about->getResource(), message: __('messages.success'));
     }
 
@@ -54,18 +54,21 @@ class AboutController extends Controller
     public function update(UpdateAboutRequest $request, About $about)
     {
         $about = $this->aboutService->updateAbout($about, $request->validated());
+
         return $this->successResponse(data: $about->getResource(), message: __('messages.update'));
     }
 
     public function destroy(About $about)
     {
         $this->aboutService->deleteAbout($about);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(About $about)
     {
         $this->aboutService->toggleAboutStatus($about);
+
         return $this->successResponse(message: __('messages.update'));
     }
 }

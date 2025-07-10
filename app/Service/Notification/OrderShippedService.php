@@ -4,7 +4,6 @@ namespace App\Service\Notification;
 
 class OrderShippedService extends DefaultNotificationData
 {
-
     protected ?array $data = [];
 
     public function __construct(?array $data = [])
@@ -50,5 +49,4 @@ class OrderShippedService extends DefaultNotificationData
             ],
         ];
     }
-
 }

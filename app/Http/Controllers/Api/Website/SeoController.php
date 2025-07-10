@@ -8,10 +8,10 @@ use App\Models\Seo\Seo;
 
 class SeoController extends Controller
 {
-
     public function __invoke()
     {
         $seos = Seo::query()->latest()->whereIsActive()->get();
-        return $this->successResponse(SeoResource::collection($seos),message: __("messages.fetched_successfully"));
+
+        return $this->successResponse(SeoResource::collection($seos), message: __('messages.fetched_successfully'));
     }
 }

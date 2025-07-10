@@ -9,6 +9,7 @@ class FaqService
     public function getAllFaqs($query)
     {
         $faqsQuery = Faq::query()->latest();
+
         return $query === 'paginate' ? $faqsQuery->paginate(10) : $faqsQuery->get();
     }
 
@@ -20,6 +21,7 @@ class FaqService
     public function updateFaq(Faq $faq, $data)
     {
         $faq->update($data);
+
         return $faq;
     }
 

@@ -2,15 +2,16 @@
 
 namespace App\Service;
 
-use App\Models\StaticPage\StaticPage;
 use App\Http\Requests\Dashboard\StaticPage\StoreStaticPageRequest;
 use App\Http\Requests\Dashboard\StaticPage\UpdateStaticPageRequest;
+use App\Models\StaticPage\StaticPage;
 
 class StaticPageService
 {
     public function index($query)
     {
         $staticPageQuery = StaticPage::query()->latest();
+
         return $query === 'paginate' ? $staticPageQuery->paginate(10) : $staticPageQuery->get();
     }
 
@@ -29,6 +30,7 @@ class StaticPageService
         $validatedDate = collect($request->validated())->except('image')->toArray();
         $staticPage = StaticPage::create($validatedDate + ['added_by_id' => auth()->id()]);
         $staticPage->storeImages(media: $request->file('image'), collection: 'staticPage_images');
+
         return $staticPage;
     }
 
@@ -37,6 +39,7 @@ class StaticPageService
         $validatedDate = collect($request->validated())->except('image')->toArray();
         $staticPage->update($validatedDate);
         $staticPage->storeImages(media: $request->file('image'), update: true, collection: 'staticPage_images');
+
         return $staticPage;
     }
 
@@ -49,6 +52,7 @@ class StaticPageService
     public function changeStatus(StaticPage $staticPage): StaticPage
     {
         $staticPage->toggleActivation();
+
         return $staticPage;
     }
 }

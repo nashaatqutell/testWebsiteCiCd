@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateAboutRequest extends FormRequest
 {
-
-
     public function rules(): array
     {
         $rules = [
@@ -25,6 +23,7 @@ class UpdateAboutRequest extends FormRequest
             $rules["$locale.meta_title"] = 'nullable|string|max:999';
             $rules["$locale.meta_description"] = 'nullable|string|max:999';
         }
+
         return $rules;
     }
 }

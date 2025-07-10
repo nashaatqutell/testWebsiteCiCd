@@ -12,7 +12,8 @@ use App\Service\PageService;
 
 class PageController extends Controller
 {
-    protected  $pageService;
+    protected $pageService;
+
     public function __construct(PageService $pageService)
     {
         $this->pageService = $pageService;
@@ -26,12 +27,14 @@ class PageController extends Controller
     public function index()
     {
         $pages = $this->pageService->index('paginate');
+
         return $this->paginateResponse(PageResource::collection($pages), $pages);
     }
 
     public function list()
     {
         $pages = $this->pageService->list();
+
         return $this->successResponse(
             SimpleDataResource::collection($pages),
             __('Page.retrieved_successfully')
@@ -41,32 +44,35 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         $page = $this->pageService->store($request);
+
         return $this->successResponse(data: $page->getResource(), message: __('Page.created_successfully'));
     }
-
 
     public function show(Page $page)
     {
         $page = $this->pageService->show($page);
+
         return $this->successResponse(PageResource::make($page), __('Page.retrieved_successfully'));
     }
-
 
     public function update(UpdatePageRequest $request, Page $page)
     {
         $page = $this->pageService->update($request, $page);
+
         return $this->successResponse(data: $page->getResource(), message: __('Page.updated_successfully'));
     }
 
     public function destroy(Page $page)
     {
         $this->pageService->destroy($page);
+
         return $this->successResponse(null, __('Page.deleted_successfully'));
     }
 
     public function changeStatus(Page $page)
     {
         $this->pageService->changeStatus($page);
+
         return $this->successResponse(message: __('Page.status_updated_successfully'));
     }
 }

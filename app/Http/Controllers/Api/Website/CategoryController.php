@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-     public function __invoke(Request $request)
+    public function __invoke(Request $request)
     {
         $categories = Category::whereIsActive()->filter()->latest()->get();
+
         return $this->successResponse(CategoryResource::collection($categories));
     }
 }

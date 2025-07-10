@@ -14,20 +14,19 @@ class UpdateGalleryRequest extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
         return [
-            "images" => "nullable|array",
-            "images.*" => "nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240",
-            "added_by_id" => "nullable|exists:users,id",
+            'images' => 'nullable|array',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            'added_by_id' => 'nullable|exists:users,id',
         ];
     }
 
-    public function prepareForValidation() : void
+    public function prepareForValidation(): void
     {
         $this->merge([
-            "added_by_id" => auth()->id(),
+            'added_by_id' => auth()->id(),
         ]);
     }
 }

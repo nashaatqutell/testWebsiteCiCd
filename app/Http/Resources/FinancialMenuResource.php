@@ -15,12 +15,12 @@ class FinancialMenuResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "name" => $this->name ?? null,
-            "year" => $this->year ?? null,
-            "icon" => url($this->getFirstMediaUrl('financial_icon')) ?: null,
-            "file" => url($this->getFirstMediaUrl('financial_file')) ?: null,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null,
+            'id' => $this->id,
+            'name' => $this->name ?? null,
+            'year' => $this->year ?? null,
+            'icon' => url($this->getFirstMediaUrl('financial_icon')) ?: null,
+            'file' => url($this->getFirstMediaUrl('financial_file')) ?: null,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }
