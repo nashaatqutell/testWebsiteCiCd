@@ -7,7 +7,6 @@ use Mpdf\Mpdf;
 
 class PdfExportService
 {
-
     private string $exportPath = 'pdf_exports';
 
     public function __construct()
@@ -35,11 +34,10 @@ class PdfExportService
         return asset("{$path}/{$fileName}.pdf");
     }
 
-
     private function ensureExportDirectoryExists(): void
     {
         $directory = public_path($this->exportPath);
-        if (!File::exists($directory)) {
+        if (! File::exists($directory)) {
             File::makeDirectory($directory, 0755, true);
         }
     }

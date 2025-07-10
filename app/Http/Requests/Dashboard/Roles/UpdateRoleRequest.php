@@ -14,12 +14,13 @@ class UpdateRoleRequest extends FormRequest
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
-            "name" => ["nullable", Rule::unique('roles', 'name')->ignore($this->role)],
-            "permission" => "nullable|array",
-            "permission.*" => "nullable|exists:permissions,id|distinct|string",
+            'name' => ['nullable', Rule::unique('roles', 'name')->ignore($this->role)],
+            'permission' => 'nullable|array',
+            'permission.*' => 'nullable|exists:permissions,id|distinct|string',
         ];
     }
 }

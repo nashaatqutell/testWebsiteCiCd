@@ -8,10 +8,10 @@ use App\Models\Blog\Blog;
 
 class BlogController extends Controller
 {
-
     public function __invoke()
     {
-        $blogs = Blog::query()->latest()->whereIsActive()->with("media")->get();
-        return $this->successResponse(BlogResource::collection($blogs),message: __("messages.fetched_successfully"));
+        $blogs = Blog::query()->latest()->whereIsActive()->with('media')->get();
+
+        return $this->successResponse(BlogResource::collection($blogs), message: __('messages.fetched_successfully'));
     }
 }

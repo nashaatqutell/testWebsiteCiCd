@@ -18,7 +18,7 @@ class CountryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => url($this->getFirstMediaUrl('country_images')) ?: null,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

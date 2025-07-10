@@ -2,7 +2,6 @@
 
 namespace App\Service\Notification;
 
-
 use App\Factory\NotificationTypeFactory;
 use App\Interface\NotificationChannelInterface;
 use Illuminate\Bus\Queueable;
@@ -13,7 +12,9 @@ class NotificationService extends Notification
     use Queueable;
 
     protected ?array $methods = [];
-    protected ?array $channels =[];
+
+    protected ?array $channels = [];
+
     public function __construct(?array $methods = [])
     {
         $this->channels = NotificationTypeFactory::getNotificationMethods($methods);
@@ -21,10 +22,10 @@ class NotificationService extends Notification
 
     public function via($notifiable): array
     {
-        return array_merge($this->channels,['database']);
+        return array_merge($this->channels, ['database']);
     }
 
-    public function send($notifiable,Notification $notification): void
+    public function send($notifiable, Notification $notification): void
     {
         $channels = $this->channels;
         foreach ($channels as $channel) {

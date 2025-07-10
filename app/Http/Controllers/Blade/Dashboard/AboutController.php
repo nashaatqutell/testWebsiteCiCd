@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Blade\Dashboard;
 
-use Illuminate\Http\Request;
-use App\Service\AboutService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\About\StoreAboutRequest;
 use App\Http\Requests\Dashboard\About\UpdateAboutRequest;
 use App\Models\About\About;
+use App\Service\AboutService;
 use Exception;
-
+use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
@@ -17,11 +16,11 @@ class AboutController extends Controller
 
     public function __construct(AboutService $aboutService)
     {
-         $this->middleware('permission:show_abouts')->only(['index','show']);
-         $this->middleware('permission:create_abouts')->only(['store']);
-         $this->middleware('permission:update_abouts')->only(['update']);
-         $this->middleware('permission:delete_abouts')->only(['destroy']);
-         $this->middleware('permission:active_abouts')->only(['changeStatus']);
+        $this->middleware('permission:show_abouts')->only(['index', 'show']);
+        $this->middleware('permission:create_abouts')->only(['store']);
+        $this->middleware('permission:update_abouts')->only(['update']);
+        $this->middleware('permission:delete_abouts')->only(['destroy']);
+        $this->middleware('permission:active_abouts')->only(['changeStatus']);
 
         $this->aboutService = $aboutService;
     }
@@ -29,6 +28,7 @@ class AboutController extends Controller
     public function index()
     {
         $abouts = $this->aboutService->getAllAbouts('get');
+
         return view('dashboard.about.index', get_defined_vars());
     }
 
@@ -36,31 +36,31 @@ class AboutController extends Controller
     {
         $type = request()->type;
         $abouts = $this->aboutService->getAboutByType($type);
+
         return view('dashboard.about.index', get_defined_vars());
     }
-
 
     public function create()
     {
         $type = request()->type;
+
         return view('dashboard.about.single', get_defined_vars());
     }
-
 
     public function store(StoreAboutRequest $request)
     {
         $this->aboutService->storeAbout($request->validated());
 
-        return to_route('admin.abouts.fetch_abouts', ['type' => $request->type])->with(array(
-            'message' => __("messages.success"),
-            'alert-type' => 'success'
-        ));
+        return to_route('admin.abouts.fetch_abouts', ['type' => $request->type])->with([
+            'message' => __('messages.success'),
+            'alert-type' => 'success',
+        ]);
     }
-
 
     public function edit(About $about)
     {
         $type = request()->type;
+
         return view('dashboard.about.single', get_defined_vars());
     }
 
@@ -69,10 +69,10 @@ class AboutController extends Controller
         $about = $this->aboutService->updateAbout($about, $request->validated());
 
         return to_route('admin.abouts.fetch_abouts', ['type' => $request->type])->with(
-            array(
-                "message" => __("messages.update"),
-                "alert-type" => "success"
-            )
+            [
+                'message' => __('messages.update'),
+                'alert-type' => 'success',
+            ]
         );
     }
 
@@ -80,14 +80,15 @@ class AboutController extends Controller
     {
         try {
             $this->aboutService->deleteAbout($about);
+
             return response()->json([
                 'success' => true,
-                'message' => __('about.about_deleted_successfully')
+                'message' => __('about.about_deleted_successfully'),
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => __('keys.something_wrong')
+                'message' => __('keys.something_wrong'),
             ], 500);
         }
     }
@@ -98,7 +99,7 @@ class AboutController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => __('keys.status_updated')
+            'message' => __('keys.status_updated'),
         ]);
     }
 
@@ -106,10 +107,11 @@ class AboutController extends Controller
     {
         $order = $request->order;
         $about->update(['order' => $order]);
+
         return response()->json([
             'success' => true,
-            'message' => __('about.order_updated')
+            'message' => __('about.order_updated'),
         ]);
-       
+
     }
 }

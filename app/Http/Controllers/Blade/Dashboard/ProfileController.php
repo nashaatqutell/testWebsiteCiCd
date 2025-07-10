@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Blade\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Auth\UpdateProfileRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('permission:show_profiles')->only(['show']);
@@ -19,7 +17,7 @@ class ProfileController extends Controller
     public function edit()
     {
         return view('dashboard.profile.edit', [
-            'profile' => auth()->user()
+            'profile' => auth()->user(),
         ]);
     }
 
@@ -42,12 +40,13 @@ class ProfileController extends Controller
         $user->update($data);
 
         return to_route('admin.profile.edit')->with([
-            "message" => __("messages.update"),
-            "alert-type" => "success"
+            'message' => __('messages.update'),
+            'alert-type' => 'success',
         ]);
     }
-    public function show (User $user)
+
+    public function show(User $user)
     {
-        return view('dashboard.profile.show',get_defined_vars());
+        return view('dashboard.profile.show', get_defined_vars());
     }
 }

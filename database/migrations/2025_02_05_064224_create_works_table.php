@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     use MigrationTrait;
+
     /**
      * Run the migrations.
      */
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->longText('meta_description')->nullable();
             $table->text('classification')->nullable();
             $table->softDeletes();
-            $table->unique(['work_id', 'locale']); 
+            $table->unique(['work_id', 'locale']);
         });
     }
 

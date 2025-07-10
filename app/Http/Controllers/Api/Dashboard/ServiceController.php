@@ -9,7 +9,6 @@ use App\Http\Resources\ServiceResource;
 use App\Http\Resources\SimpleDataResource;
 use App\Models\Service\Service;
 use App\Service\ServiceService;
-use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -28,30 +27,35 @@ class ServiceController extends Controller
     public function index()
     {
         $services = $this->serviceService->index('paginate');
+
         return $this->paginateResponse(ServiceResource::collection($services), $services);
     }
 
     public function list()
     {
         $services = $this->serviceService->list();
+
         return $this->successResponse(SimpleDataResource::collection($services), __('service.retrieved_successfully'));
     }
 
     public function store(StoreServiceRequest $request)
     {
         $service = $this->serviceService->store($request);
+
         return $this->successResponse(data: $service->getResource(), message: __('service.created_successfully'));
     }
 
     public function show(Service $service)
     {
         $service = $this->serviceService->show($service);
+
         return $this->successResponse(ServiceResource::make($service), __('service.retrieved_successfully'));
     }
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $service = $this->serviceService->update($request, $service);
+
         return $this->successResponse(data: $service->getResource(), message: __('service.updated_successfully'));
     }
 
@@ -61,12 +65,14 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $this->serviceService->destroy($service);
+
         return $this->successResponse(null, __('service.deleted_successfully'));
     }
 
     public function changeStatus(Service $service)
     {
         $this->serviceService->changeStatus($service);
+
         return $this->successResponse(message: __('service.status_updated_successfully'));
     }
 }

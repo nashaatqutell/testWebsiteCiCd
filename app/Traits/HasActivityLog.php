@@ -24,9 +24,9 @@ trait HasActivityLog
 
     protected function logActivity($event)
     {
-        $description = __('activity.model_' . $event, ['model' => __($this->getTranslationKey())]);
-        $descriptionEn = __('activity.model_' . $event, ['model' => __($this->getTranslationKey(), [], 'en')]);
-        $descriptionAr = __('activity.model_' . $event, ['model' => __($this->getTranslationKey(), [], 'ar')]);
+        $description = __('activity.model_'.$event, ['model' => __($this->getTranslationKey())]);
+        $descriptionEn = __('activity.model_'.$event, ['model' => __($this->getTranslationKey(), [], 'en')]);
+        $descriptionAr = __('activity.model_'.$event, ['model' => __($this->getTranslationKey(), [], 'ar')]);
 
         $activity = activity()
             ->causedBy(Auth::user())
@@ -39,6 +39,6 @@ trait HasActivityLog
 
     protected function getTranslationKey()
     {
-        return 'activity.' . class_basename($this);
+        return 'activity.'.class_basename($this);
     }
 }

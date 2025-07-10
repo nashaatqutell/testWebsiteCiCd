@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Category;
 
 use App\Http\Filters\CategoryFilter;
@@ -13,7 +14,7 @@ class Category extends BaseModel implements TranslatableContract
 
     protected $table = 'categories';
 
-    protected $fillable = ['is_active',"added_by_id"];
+    protected $fillable = ['is_active', 'added_by_id'];
 
     public $translatedAttributes = ['name', 'description'];
 
@@ -30,5 +31,4 @@ class Category extends BaseModel implements TranslatableContract
             ->addMediaCollection('category_images')
             ->useDisk('public');
     }
-
 }

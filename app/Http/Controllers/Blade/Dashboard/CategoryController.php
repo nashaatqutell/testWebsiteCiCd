@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Blade\Dashboard;
 
 use App\Http\Controllers\Controller;
@@ -22,9 +23,11 @@ class CategoryController extends Controller
 
         $this->categoryService = $categoryService;
     }
+
     public function index()
     {
         $categories = $this->categoryService->getAllCategories('get');
+
         return view('dashboard.category.index', get_defined_vars());
     }
 
@@ -36,8 +39,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $this->categoryService->storeCategory($request->validated());
+
         return to_route('admin.categories.index')->with([
-            'message'    => __("messages.success"),
+            'message' => __('messages.success'),
             'alert-type' => 'success',
         ]);
     }
@@ -59,13 +63,14 @@ class CategoryController extends Controller
 
     // }
 
-     public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $this->categoryService->updateCategory($request, $category);
+
         return redirect()->route('admin.categories.index', $category->id)->with(
             [
-                "message" => __("messages.update"),
-                "alert-type" => "success"
+                'message' => __('messages.update'),
+                'alert-type' => 'success',
             ]
         );
     }
@@ -91,6 +96,7 @@ class CategoryController extends Controller
     public function changeStatus(Category $category)
     {
         $this->categoryService->toggleCategoryStatus($category);
+
         return response()->json([
             'success' => true,
             'message' => __('keys.status_updated'),

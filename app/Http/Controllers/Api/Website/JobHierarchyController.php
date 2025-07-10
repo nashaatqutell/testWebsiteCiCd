@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Website;
 
 use App\Http\Controllers\Controller;
@@ -10,12 +11,14 @@ class JobHierarchyController extends Controller
     public function index()
     {
         $jobs = JobHierarchy::whereIsActive()->get();
+
         return $this->successResponse(JobWebsiteResource::collection($jobs));
     }
+
     public function show($id)
     {
         $job = JobHierarchy::whereIsActive()->findOrFail($id);
+
         return $this->successResponse(JobWebsiteResource::make($job));
     }
-
 }

@@ -16,19 +16,19 @@ class AboutSeeder extends Seeder
 
         $faker = Factory::create();
         About::query()->create([
-            "en" => [
-                "name" => $faker->name,
-                "description" => $faker->text,
-                "meta_title" => $faker->name,
-                "meta_description" => $faker->text
+            'en' => [
+                'name' => $faker->name,
+                'description' => $faker->text,
+                'meta_title' => $faker->name,
+                'meta_description' => $faker->text,
             ],
-            "ar" => [
-                "name" => $faker->name,
-                "description" => $faker->text,
-                "meta_title" => $faker->name,
-                "meta_description" => $faker->text
+            'ar' => [
+                'name' => $faker->name,
+                'description' => $faker->text,
+                'meta_title' => $faker->name,
+                'meta_description' => $faker->text,
             ],
-            "type" => "about"
+            'type' => 'about',
         ]);
     }
 }

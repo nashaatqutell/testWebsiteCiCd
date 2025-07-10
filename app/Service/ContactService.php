@@ -9,6 +9,7 @@ class ContactService
     public function getAllContacts($query)
     {
         $contactsQuery = Contact::query()->latest();
+
         return $query === 'paginate' ? $contactsQuery->paginate(10) : $contactsQuery->get();
     }
 
@@ -24,6 +25,6 @@ class ContactService
 
     public function toggleContactStatus(Contact $contact)
     {
-        $contact->update(['status' => !$contact->status]);
+        $contact->update(['status' => ! $contact->status]);
     }
 }

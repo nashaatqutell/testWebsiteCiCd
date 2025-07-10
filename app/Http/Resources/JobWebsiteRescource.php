@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -14,11 +15,11 @@ class JobWebsiteRescource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id"       => $this->id,
-            'name'     => $this->name,
+            'id' => $this->id,
+            'name' => $this->name,
             'position' => $this->position,
             'description' => $this->description,
-            "image"    => url($this->getFirstMediaUrl('job_images')) ?: null,
+            'image' => url($this->getFirstMediaUrl('job_images')) ?: null,
         ];
     }
 }

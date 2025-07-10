@@ -27,42 +27,49 @@ class PartnerController extends Controller
     public function index()
     {
         $partners = $this->partnerService->index('paginate');
+
         return $this->paginateResponse(PartnerResource::collection($partners), $partners);
     }
 
     public function list()
     {
         $partners = $this->partnerService->list();
+
         return $this->successResponse(SimpleDataResource::collection($partners), __('partner.retrieved_successfully'));
     }
 
     public function store(StorePartnerRequest $request)
     {
         $partner = $this->partnerService->store($request);
+
         return $this->successResponse(data: $partner->getResource(), message: __('partner.created_successfully'));
     }
 
     public function show(Partner $partner)
     {
         $partner = $this->partnerService->show($partner);
+
         return $this->successResponse(PartnerResource::make($partner), __('partner.retrieved_successfully'));
     }
 
     public function update(UpdatePartnerRequest $request, Partner $partner)
     {
         $partner = $this->partnerService->update($request, $partner);
+
         return $this->successResponse(data: $partner->getResource(), message: __('partner.updated_successfully'));
     }
 
     public function destroy(Partner $partner)
     {
         $this->partnerService->destroy($partner);
+
         return $this->successResponse(null, __('partner.deleted_successfully'));
     }
 
     public function changeStatus(Partner $partner)
     {
         $this->partnerService->changeStatus($partner);
+
         return $this->successResponse(message: __('partner.status_updated_successfully'));
     }
 }

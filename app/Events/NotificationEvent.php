@@ -2,10 +2,7 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -19,7 +16,7 @@ class NotificationEvent implements ShouldBroadcast
      */
     public ?string $message = null;
 
-    public function __construct( ?string $message = null)
+    public function __construct(?string $message = null)
     {
         $this->message = $message;
     }
@@ -29,14 +26,13 @@ class NotificationEvent implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn() : array
+    public function broadcastOn(): array
     {
-        return ["my-channel"];
+        return ['my-channel'];
     }
-
 
     public function broadcastAs(): string
     {
-        return "orderNotification";
+        return 'orderNotification';
     }
 }

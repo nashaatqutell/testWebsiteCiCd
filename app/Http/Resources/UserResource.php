@@ -16,12 +16,12 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "name" => $this->name,
-            "email" => $this->email,
-            "role" => RoleEnum::getValue($this->role),
-            "phone" => $this->phone,
-            "token" => $this->token
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => RoleEnum::getValue($this->role),
+            'phone' => $this->phone,
+            'token' => $this->token,
         ];
     }
 }

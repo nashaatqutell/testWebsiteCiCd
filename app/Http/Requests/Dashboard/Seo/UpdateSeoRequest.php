@@ -18,10 +18,10 @@ class UpdateSeoRequest extends FormRequest
 
     public function rules(): array
     {
-        $rules =  [
-            "slug" => ["nullable", Rule::unique('seos', 'slug')->ignore($this->seo)->whereNull("deleted_at")],
-            "page_name" => "nullable|string|max:255",
-            "is_active" => "nullable|boolean",
+        $rules = [
+            'slug' => ['nullable', Rule::unique('seos', 'slug')->ignore($this->seo)->whereNull('deleted_at')],
+            'page_name' => 'nullable|string|max:255',
+            'is_active' => 'nullable|boolean',
         ];
 
         foreach (config('translatable.locales') as $locale) {
@@ -29,13 +29,14 @@ class UpdateSeoRequest extends FormRequest
             $rules["$locale.meta_description"] = 'nullable|string';
             $rules["$locale.meta_keywords"] = 'nullable|string';
         }
+
         return $rules;
     }
 
-    public function prepareForValidation() : void
+    public function prepareForValidation(): void
     {
         $this->merge([
-            "slug" => isset($this->slug) ? Str::slug($this->slug) : $this->seo->slug,
+            'slug' => isset($this->slug) ? Str::slug($this->slug) : $this->seo->slug,
         ]);
     }
 }

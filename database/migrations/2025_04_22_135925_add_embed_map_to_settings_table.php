@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->string("embed_map")->nullable()->after("location");
+            $table->string('embed_map')->nullable()->after('location');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->dropColumn("embed_map");
+            $table->dropColumn('embed_map');
         });
     }
 };

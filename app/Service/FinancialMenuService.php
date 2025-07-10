@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use App\Http\Requests\Dashboard\FinancialMenu\StoreFinancialMenuRequest;
@@ -10,6 +11,7 @@ class FinancialMenuService
     public function index($query)
     {
         $financial_menus = FinancialMenu::query()->latest();
+
         return $query === 'paginate' ? $financial_menus->paginate(10) : $financial_menus->get();
     }
 
@@ -29,6 +31,7 @@ class FinancialMenuService
         $financial_menu->storeImages(media: $request->file('icon'), collection: 'financial_icon');
         $financial_menu->storeImages(media: $request->file('file'), collection: 'financial_file');
         $financial_menu->save();
+
         return $financial_menu;
     }
 
@@ -38,6 +41,7 @@ class FinancialMenuService
         $financial_menu->update($validatedDate);
         $financial_menu->storeImages(media: $request->file('icon'), update: true, collection: 'financial_icon');
         $financial_menu->storeImages(media: $request->file('file'), update: true, collection: 'financial_file');
+
         return $financial_menu;
     }
 
@@ -51,6 +55,7 @@ class FinancialMenuService
     public function changeStatus(FinancialMenu $financial_menu): FinancialMenu
     {
         $financial_menu->toggleActivation();
+
         return $financial_menu;
     }
 }

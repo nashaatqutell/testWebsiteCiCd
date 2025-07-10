@@ -16,13 +16,13 @@ class OfferResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "name" => $this->name ?? null,
-            "description" => $this->description ?? null,
-            "price" => $this->price ?? null,
-            "discount_percent" => $this->discount_percent ?? 0,
-//            "status" => ActiveEnum::getKey($this->is_active ?? null),
-            "created_at" => convertCreatedAt($this->created_at ?? null),
+            'id' => $this->id,
+            'name' => $this->name ?? null,
+            'description' => $this->description ?? null,
+            'price' => $this->price ?? null,
+            'discount_percent' => $this->discount_percent ?? 0,
+            //            "status" => ActiveEnum::getKey($this->is_active ?? null),
+            'created_at' => convertCreatedAt($this->created_at ?? null),
         ];
     }
 }

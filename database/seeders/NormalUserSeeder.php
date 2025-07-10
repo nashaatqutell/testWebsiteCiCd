@@ -23,8 +23,8 @@ class NormalUserSeeder extends Seeder
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
                 'email' => $faker->email,
-                "password" => bcrypt('password'),
-                "role" => RoleEnum::User->value,
+                'password' => bcrypt('password'),
+                'role' => RoleEnum::User->value,
                 'created_at' => Carbon::now(),
             ]);
         }

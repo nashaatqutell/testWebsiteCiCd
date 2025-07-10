@@ -2,11 +2,10 @@
 
 namespace App\Models\Slider;
 
-use App\Models\BaseModel;
-use App\Models\User;
 use App\Http\Resources\SliderResource;
-use Astrotomic\Translatable\Translatable;
+use App\Models\BaseModel;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 class Slider extends BaseModel implements TranslatableContract
 {
@@ -16,12 +15,10 @@ class Slider extends BaseModel implements TranslatableContract
 
     public $translatedAttributes = ['name', 'description'];
 
-
     public function getResource(): SliderResource
     {
         return new SliderResource($this->fresh());
     }
-
 
     public function registerMediaCollections(): void
     {

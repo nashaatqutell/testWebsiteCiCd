@@ -24,7 +24,7 @@ class GeneralObserver
 
     protected function logActivity(Model $model, $event)
     {
-        $description = __('activity.model_' . $event, ['model' => class_basename($model)]);
+        $description = __('activity.model_'.$event, ['model' => class_basename($model)]);
 
         activity()
             ->causedBy(Auth::user())

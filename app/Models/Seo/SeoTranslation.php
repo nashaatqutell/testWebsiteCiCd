@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class SeoTranslation extends Model
 {
-
     protected $table = 'seo_translations';
 
     protected $fillable = [
@@ -16,6 +15,4 @@ class SeoTranslation extends Model
     ];
 
     public $timestamps = false;
-
-
 }

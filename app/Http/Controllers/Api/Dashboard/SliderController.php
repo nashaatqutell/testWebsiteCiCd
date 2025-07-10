@@ -27,12 +27,14 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = $this->sliderService->index('paginate');
+
         return $this->paginateResponse(SliderResource::collection($sliders), $sliders);
     }
 
     public function list()
     {
         $sliders = $this->sliderService->list();
+
         return $this->successResponse(SimpleDataResource::collection($sliders), __('slider.retrieved_successfully'));
     }
 
@@ -40,31 +42,35 @@ class SliderController extends Controller
     {
 
         $slider = $this->sliderService->store($request);
+
         return $this->successResponse(data: $slider->getResource(), message: __('slider.created_successfully'));
     }
-
 
     public function show(Slider $slider)
     {
         $this->sliderService->show($slider);
+
         return $this->successResponse(SliderResource::make($slider), __('slider.retrieved_successfully'));
     }
 
     public function update(UpdateSliderRequest $request, Slider $slider)
     {
         $slider = $this->sliderService->update($request, $slider);
+
         return $this->successResponse(data: $slider->getResource(), message: __('slider.updated_successfully'));
     }
 
     public function destroy(Slider $slider)
     {
         $this->sliderService->destroy($slider);
+
         return $this->successResponse(null, __('slider.deleted_successfully'));
     }
 
     public function changeStatus(Slider $slider)
     {
         $this->sliderService->changeStatus($slider);
+
         return $this->successResponse(message: __('slider.status_updated_successfully'));
     }
 }

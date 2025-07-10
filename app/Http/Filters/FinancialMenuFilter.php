@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Filters;
 
 class FinancialMenuFilter extends BaseFilters
@@ -25,7 +26,7 @@ class FinancialMenuFilter extends BaseFilters
                 ->when(
                     $this->request->filled('name'),
                     function ($query) use ($value) {
-                        $query->whereTranslationLike('name', '%' . $value . '%');
+                        $query->whereTranslationLike('name', '%'.$value.'%');
                     }
                 );
         }

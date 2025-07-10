@@ -1,4 +1,5 @@
 <?php
+
 return [
     'activity_log' => 'Activity Log',
     'model_created' => ':model added',
@@ -26,7 +27,6 @@ return [
     'last_activity' => 'Last Activities',
     'view_all' => 'View All',
     'Category' => 'Category',
-    'SubCategory' => "SubCategory",
-    'FinancialMenu' => "Financial Menu",
+    'SubCategory' => 'SubCategory',
+    'FinancialMenu' => 'Financial Menu',
 ];
-

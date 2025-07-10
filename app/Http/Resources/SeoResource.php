@@ -15,12 +15,12 @@ class SeoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "slug" => $this->slug ?? null,
-            "page_name" => $this->page_name ?? null,
-            "meta_name" => $this->meta_name ?? null,
-            "meta_description" => $this->meta_description ?? null,
-            "meta_keywords" => $this->meta_keywords ?? null,
+            'id' => $this->id,
+            'slug' => $this->slug ?? null,
+            'page_name' => $this->page_name ?? null,
+            'meta_name' => $this->meta_name ?? null,
+            'meta_description' => $this->meta_description ?? null,
+            'meta_keywords' => $this->meta_keywords ?? null,
         ];
     }
 }

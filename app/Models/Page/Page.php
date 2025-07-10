@@ -11,10 +11,10 @@ use Astrotomic\Translatable\Translatable;
 class Page extends BaseModel implements TranslatableContract
 {
     use Translatable;
+
     protected $guarded = [];
 
-    public $translatedAttributes = ['title', 'description','meta_description'];
-
+    public $translatedAttributes = ['title', 'description', 'meta_description'];
 
     public function getResource(): PageResource
     {
@@ -27,9 +27,9 @@ class Page extends BaseModel implements TranslatableContract
             ->addMediaCollection('Page_images')
             ->useDisk('public');
     }
+
     public function service()
     {
         return $this->belongsTo(Service::class);
     }
-
 }

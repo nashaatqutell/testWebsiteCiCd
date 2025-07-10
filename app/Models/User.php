@@ -13,14 +13,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles,HasActivation,Filterable, HasActivityLog;
-
+    use Filterable, HasActivation, HasActivityLog,HasApiTokens,HasFactory,HasRoles, Notifiable;
     use InteractsWithMedia;
-
 
     public function registerMediaCollections(): void
     {
@@ -41,12 +40,12 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
-        "phone",
-        "role",
-        "added_by_id",
-        "is_active",
-        "code",
-        "expire_code"
+        'phone',
+        'role',
+        'added_by_id',
+        'is_active',
+        'code',
+        'expire_code',
     ];
 
     protected string $filter = UserFilter::class;

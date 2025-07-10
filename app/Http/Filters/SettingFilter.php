@@ -11,8 +11,8 @@ class SettingFilter extends BaseFilters
      */
     protected $filters = [
         'name',
-        "phone",
-        "role",
+        'phone',
+        'role',
     ];
 
     protected function name($value)
@@ -22,8 +22,8 @@ class SettingFilter extends BaseFilters
                 ->when(
                     $this->request->filled('name'),
                     function ($query) use ($value) {
-                        $query->whereTranslationLike("name", "%{$value}%")
-                            ->orWhereTranslationLike("description", "%{$value}%");
+                        $query->whereTranslationLike('name', "%{$value}%")
+                            ->orWhereTranslationLike('description', "%{$value}%");
                     }
                 );
         }
@@ -38,7 +38,7 @@ class SettingFilter extends BaseFilters
                 ->when(
                     $this->request->filled('phone'),
                     function ($query) use ($value) {
-                        $query->where("phone", "like", "%{$value}%");
+                        $query->where('phone', 'like', "%{$value}%");
                     }
                 );
         }
@@ -53,12 +53,11 @@ class SettingFilter extends BaseFilters
                 ->when(
                     $this->request->filled('role'),
                     function ($query) use ($value) {
-                        $query->where("role", $value);
+                        $query->where('role', $value);
                     }
                 );
         }
+
         return $this->builder;
     }
-
-
 }

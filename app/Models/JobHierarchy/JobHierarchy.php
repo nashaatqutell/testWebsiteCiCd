@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\JobHierarchy;
 
 use App\Http\Filters\JobHierarchyFilter;
@@ -17,7 +18,7 @@ class JobHierarchy extends BaseModel implements TranslatableContract
 
     protected $filter = JobHierarchyFilter::class;
 
-    protected $fillable = ['is_active', "added_by_id", "parent_id"];
+    protected $fillable = ['is_active', 'added_by_id', 'parent_id'];
 
     public $translatedAttributes = ['name', 'position', 'description'];
 
@@ -27,7 +28,6 @@ class JobHierarchy extends BaseModel implements TranslatableContract
             ->addMediaCollection('job_images')
             ->useDisk('public');
     }
-
 
     public function getResource(): JobResource
     {

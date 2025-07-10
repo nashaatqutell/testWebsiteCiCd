@@ -21,16 +21,17 @@ class StoreStaticPageRequest extends FormRequest
      */
     public function rules(): array
     {
-            $rules = [
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
-                'is_active' => 'nullable|boolean',
-            ];
-            foreach (config('translatable.locales') as $locale) {
-                $rules["$locale.name"] = 'required|string|max:255';
-                $rules["$locale.description"] = 'required|string';
-                $rules["$locale.meta_description"] = 'nullable|string';
-            }
-            return $rules;
+        $rules = [
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            'is_active' => 'nullable|boolean',
+        ];
+        foreach (config('translatable.locales') as $locale) {
+            $rules["$locale.name"] = 'required|string|max:255';
+            $rules["$locale.description"] = 'required|string';
+            $rules["$locale.meta_description"] = 'nullable|string';
+        }
+
+        return $rules;
 
     }
 }

@@ -15,6 +15,7 @@ class HeroSectionController extends Controller
     public function __invoke(Request $request)
     {
         $heroSections = HeroSection::whereIsActive()->first();
+
         return $this->successResponse(HeroSectionResource::make($heroSections));
     }
 }

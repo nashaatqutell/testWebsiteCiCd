@@ -9,6 +9,7 @@ class AboutService
     public function getAllAbouts($query)
     {
         $aboutsQuery = About::query()->latest();
+
         return $query === 'paginate' ? $aboutsQuery->paginate(10) : $aboutsQuery->get();
     }
 
@@ -69,5 +70,4 @@ class AboutService
     {
         $about->toggleActivation();
     }
-
 }

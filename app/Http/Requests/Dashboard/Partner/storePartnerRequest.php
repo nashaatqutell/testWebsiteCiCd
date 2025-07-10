@@ -16,6 +16,7 @@ class StorePartnerRequest extends FormRequest
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.name"] = 'required|string|max:255';
         }
+
         return $rules;
 
     }

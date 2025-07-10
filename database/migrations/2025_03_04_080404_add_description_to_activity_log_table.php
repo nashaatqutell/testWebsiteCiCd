@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('activity_log', function (Blueprint $table) {
-                $table->text('description_en')->nullable();
-                $table->text('description_ar')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_ar')->nullable();
         });
     }
 

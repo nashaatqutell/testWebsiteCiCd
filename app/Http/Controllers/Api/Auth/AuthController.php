@@ -10,21 +10,21 @@ use App\Traits\ApiResponse;
 
 class AuthController extends Controller
 {
-
     use ApiResponse;
 
     protected AuthService $authService;
 
     public function __construct()
     {
-        $this->authService = new AuthService();
+        $this->authService = new AuthService;
     }
 
     public function login(LoginRequest $request)
     {
         try {
             $auth = $this->authService->login($request);
-            return $this->successResponse(data: UserResource::make($auth), message: __("auth.Login_successfully"));
+
+            return $this->successResponse(data: UserResource::make($auth), message: __('auth.Login_successfully'));
         } catch (\Exception $e) {
             return $this->errorResponse(message: $e->getMessage());
         }
@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
         $auth = auth()->user();
         $this->authService->logout($auth);
-        return $this->successResponse(message: __("auth.Logout_successfully"));
-    }
 
+        return $this->successResponse(message: __('auth.Logout_successfully'));
+    }
 }

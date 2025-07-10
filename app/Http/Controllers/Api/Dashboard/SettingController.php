@@ -10,7 +10,7 @@ use App\Service\SettingService;
 
 class SettingController extends Controller
 {
-    public function __construct(protected SettingService $settingService = new SettingService())
+    public function __construct(protected SettingService $settingService = new SettingService)
     {
         $this->middleware('permission:show_settings')->only(['index']);
         $this->middleware('permission:update_settings')->only(['update']);
@@ -29,6 +29,7 @@ class SettingController extends Controller
     public function update(StoreSettingRequest $request, Setting $setting)
     {
         $setting = $this->settingService->update($request, $setting);
-        return $this->successResponse(data: $setting->getResource(), message: __("messages.update"));
+
+        return $this->successResponse(data: $setting->getResource(), message: __('messages.update'));
     }
 }

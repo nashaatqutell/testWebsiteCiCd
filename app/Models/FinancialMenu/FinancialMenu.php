@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\FinancialMenu;
 
 use App\Http\Filters\FinancialMenuFilter;

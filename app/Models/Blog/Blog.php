@@ -6,9 +6,9 @@ use App\Http\Filters\BlogFilter;
 use App\Http\Resources\BlogResource;
 use App\Models\BaseModel;
 use App\Observers\BlogObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 #[ObservedBy([BlogObserver::class])]
 class Blog extends BaseModel implements TranslatableContract
@@ -22,9 +22,9 @@ class Blog extends BaseModel implements TranslatableContract
     protected $fillable = [
         'name',
         'description',
-        "slug",
-        "is_active",
-        "added_by_id",
+        'slug',
+        'is_active',
+        'added_by_id',
     ];
 
     public function getResource(): BlogResource

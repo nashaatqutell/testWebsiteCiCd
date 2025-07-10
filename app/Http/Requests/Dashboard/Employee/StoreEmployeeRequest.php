@@ -11,7 +11,6 @@ use Illuminate\Validation\Rules\Password;
 
 class StoreEmployeeRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -20,25 +19,23 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
-            "email" => ["required", "email", Rule::unique("users", "email")->whereNull("deleted_at")],
-            "phone" => ["required", Rule::unique("users", "phone")->whereNull("deleted_at")],
-//            "password" => "required|string|min:8",
-            "password" => ['required', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
-            "role" => ["nullable",new Enum(RoleEnum::class)],
-            "added_by_id" => "nullable|exists:users,id",
-            "is_active" => ["nullable",new Enum(ActiveEnum::class)],
-            "role_id" => ["required","exists:roles,id","distinct","numeric"],
+            'name' => 'required|string',
+            'email' => ['required', 'email', Rule::unique('users', 'email')->whereNull('deleted_at')],
+            'phone' => ['required', Rule::unique('users', 'phone')->whereNull('deleted_at')],
+            //            "password" => "required|string|min:8",
+            'password' => ['required', Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
+            'role' => ['nullable', new Enum(RoleEnum::class)],
+            'added_by_id' => 'nullable|exists:users,id',
+            'is_active' => ['nullable', new Enum(ActiveEnum::class)],
+            'role_id' => ['required', 'exists:roles,id', 'distinct', 'numeric'],
         ];
     }
 
-
-    public function prepareForValidation() : void
+    public function prepareForValidation(): void
     {
         $this->merge([
-            "added_by_id" => auth()->id(),
-            "role" => $this->role ?? RoleEnum::Employee->value,
+            'added_by_id' => auth()->id(),
+            'role' => $this->role ?? RoleEnum::Employee->value,
         ]);
     }
-
 }

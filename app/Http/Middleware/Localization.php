@@ -12,11 +12,10 @@ class Localization
         if (
             $request->hasHeader('Accept-Language') &&
             in_array(
-                $local=$request->header('Accept-Language'),
+                $local = $request->header('Accept-Language'),
                 config('app.available_locales'),
                 true
-            ))
-        {
+            )) {
             app()->setLocale($local);
         }
 

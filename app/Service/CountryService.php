@@ -3,13 +3,13 @@
 namespace App\Service;
 
 use App\Models\Country\Country;
-use Illuminate\Http\Request;
 
 class CountryService
 {
     public function getAllCountries($query)
     {
         $countriesQuery = Country::filter()->latest();
+
         return $query === 'paginate' ? $countriesQuery->paginate(10) : $countriesQuery->get();
     }
 

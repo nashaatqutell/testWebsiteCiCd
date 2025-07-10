@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePartnerRequest extends FormRequest
 {
-
     public function rules(): array
     {
         $rules = [
@@ -18,6 +17,7 @@ class UpdatePartnerRequest extends FormRequest
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.name"] = 'sometimes|string|max:255';
         }
+
         return $rules;
     }
 }

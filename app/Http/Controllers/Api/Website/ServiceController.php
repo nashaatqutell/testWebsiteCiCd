@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Website;
 
 use App\Http\Controllers\Controller;
@@ -15,18 +16,22 @@ class ServiceController extends Controller
     {
         $parentService = Service::whereNull('parent_id')->pluck('id')->toArray();
         $services = Service::whereIsActive()
-            ->whereIn('parent_id',$parentService)
-            ->where('show',True)
+            ->whereIn('parent_id', $parentService)
+            ->where('show', true)
             ->get();
+
         return $this->successResponse(ServiceWebsiteRescource::collection($services));
     }
+
     public function getMainServices(Request $request)
     {
         $services = Service::whereIsActive()
             ->whereNull('parent_id')
             ->get();
+
         return $this->successResponse(ServiceResource::collection($services));
     }
+
     public function getServicesWithChild(Request $request)
     {
         $services = Service::whereIsActive()
@@ -36,10 +41,11 @@ class ServiceController extends Controller
 
         return $this->successResponse(ServiceWithChildrenResource::collection($services));
     }
+
     public function getServiceById(Service $service)
     {
         $service->load('children.children');
+
         return $this->successResponse(ServiceWithChildrenByIdResource::make($service));
     }
-
 }

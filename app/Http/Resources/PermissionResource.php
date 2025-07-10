@@ -15,9 +15,9 @@ class PermissionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
-            "name" => $this->name ?? null,
-            "type" => $this->type ?? null,
+            'id' => $this->id,
+            'name' => $this->name ?? null,
+            'type' => $this->type ?? null,
         ];
     }
 }

@@ -10,18 +10,16 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
-
-
-
     public function fetchAllPermissions()
     {
         // fetch all permissions in the system
         $permissions = Permission::query()->latest()->get();
+
         return $this->successResponse(
             PermissionResource::collection($permissions),
             message: __(
-            "messages.fetched_successfully"
-        )
+                'messages.fetched_successfully'
+            )
         );
     }
 
@@ -35,24 +33,26 @@ class PermissionController extends Controller
         foreach ($roles as $role) {
             $permissions = array_merge($permissions, $role->permissions->pluck('name')->toArray());
         }
+
         return $permissions;
     }
-
 
     public function fetchPermissionForRole(Role $role)
     {
         $permissions = $role->permissions ?? [];
+
         return $this->successResponse(
             PermissionResource::collection($permissions),
             message: __(
-            "messages.fetched_successfully"
-        )
+                'messages.fetched_successfully'
+            )
         );
     }
 
     public function fetchPermissionTypes()
     {
-      $result = (new RoleService())->fetchPermissionTypes();
-        return $this->successResponse(data: $result, message: __("messages.fetched_successfully"));
+        $result = (new RoleService)->fetchPermissionTypes();
+
+        return $this->successResponse(data: $result, message: __('messages.fetched_successfully'));
     }
 }

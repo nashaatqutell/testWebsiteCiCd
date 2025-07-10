@@ -8,10 +8,10 @@ use App\Models\Gallery\Gallery;
 
 class GalleryController extends Controller
 {
-
     public function __invoke()
     {
-        $Galleries = Gallery::query()->latest()->whereIsActive()->with("media")->get();
+        $Galleries = Gallery::query()->latest()->whereIsActive()->with('media')->get();
+
         return $this->successResponse(GalleryResource::collection($Galleries));
     }
 }

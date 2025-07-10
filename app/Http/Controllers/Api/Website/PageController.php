@@ -12,6 +12,7 @@ class PageController extends Controller
     public function __invoke(Request $request)
     {
         $pages = Page::whereIsActive()->latest()->get();
+
         return $this->successResponse(PageResource::collection($pages));
     }
 }

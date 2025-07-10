@@ -9,6 +9,7 @@ class TestimonialService
     public function getAllTestimonials($query)
     {
         $testimonialQuery = Testimonial::filter()->latest();
+
         return $query === 'paginate' ? $testimonialQuery->paginate(10) : $testimonialQuery->get();
     }
 

@@ -12,7 +12,7 @@ class PartnerController extends Controller
     public function __invoke(Request $request)
     {
         $partners = Partner::whereIsActive()->latest()->get();
+
         return $this->successResponse(PartnerResource::collection($partners));
     }
-
 }

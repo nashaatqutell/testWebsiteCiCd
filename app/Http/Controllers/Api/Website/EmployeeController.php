@@ -12,6 +12,7 @@ class EmployeeController extends Controller
     public function __invoke()
     {
         $employees = User::query()->latest()->whereIsActive()->whereRole(RoleEnum::Employee->value)->get();
-        return $this->successResponse(data: UserResource::collection($employees),message: __("messages.fetched_successfully"));
+
+        return $this->successResponse(data: UserResource::collection($employees), message: __('messages.fetched_successfully'));
     }
 }

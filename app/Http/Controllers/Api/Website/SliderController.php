@@ -15,6 +15,7 @@ class SliderController extends Controller
     public function __invoke(Request $request)
     {
         $sliders = Slider::whereIsActive()->latest()->get();
+
         return $this->successResponse(SliderResource::collection($sliders));
     }
 }

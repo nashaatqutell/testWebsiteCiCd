@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\HeroSection\UpdateHeroSectionRequest;
 use App\Models\HeroSection\HeroSection;
 use App\Service\HeroSectionService;
-use Illuminate\Http\Request;
 
 class HeroSectionController extends Controller
 {
     protected $heroSectionService;
 
-    public function  __construct(HeroSectionService $heroSectionService)
+    public function __construct(HeroSectionService $heroSectionService)
     {
         $this->heroSectionService = $heroSectionService;
         $this->middleware('permission:show_heroSection')->only(['index']);
@@ -22,7 +21,8 @@ class HeroSectionController extends Controller
     public function index()
     {
         $heroSections = $this->heroSectionService->index('get');
-        return view('dashboard.heroSections.index',get_defined_vars());
+
+        return view('dashboard.heroSections.index', get_defined_vars());
     }
 
     public function edit(HeroSection $heroSection)
@@ -30,15 +30,15 @@ class HeroSectionController extends Controller
         return view('dashboard.heroSections.single', get_defined_vars());
     }
 
-
-    public function update(UpdateHeroSectionRequest $request, HeroSection  $heroSection)
+    public function update(UpdateHeroSectionRequest $request, HeroSection $heroSection)
     {
         $this->heroSectionService->update($request, $heroSection);
+
         return redirect()->route('admin.hero_sections.edit', $heroSection->id)->with(
-            array(
-                "message" => __("messages.update"),
-                "alert-type" => "success"
-            )
+            [
+                'message' => __('messages.update'),
+                'alert-type' => 'success',
+            ]
         );
     }
 }

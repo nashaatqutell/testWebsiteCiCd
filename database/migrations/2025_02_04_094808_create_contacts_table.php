@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     use MigrationTrait;
+
     /**
      * Run the migrations.
      */
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('message');
             $table->foreignId('service_id')->nullable()->constrained('services')->cascadeOnDelete();
-            $table->boolean('status')->comment("1 = new , 0 = replied")->default(1);
+            $table->boolean('status')->comment('1 = new , 0 = replied')->default(1);
             $this->addGeneralFields($table);
             $table->timestamps();
         });

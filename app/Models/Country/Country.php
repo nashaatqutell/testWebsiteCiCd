@@ -16,10 +16,10 @@ class Country extends BaseModel implements TranslatableContract
     {
         return new CountryResource($this->fresh());
     }
+
     public $translatedAttributes = ['name'];
 
     protected $guarded = ['id'];
 
     protected $filter = CountryFilter::class;
-
 }

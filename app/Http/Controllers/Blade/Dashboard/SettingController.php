@@ -9,11 +9,11 @@ use App\Service\SettingService;
 
 class SettingController extends Controller
 {
-
     private string $routePath = 'admin.settings';
+
     private string $viewPath = 'dashboard.settings';
 
-    public function __construct(protected SettingService $blogService = new SettingService())
+    public function __construct(protected SettingService $blogService = new SettingService)
     {
         $this->middleware('permission:show_settings')->only(['index', 'show']);
         $this->middleware('permission:create_settings')->only(['store']);
@@ -24,10 +24,11 @@ class SettingController extends Controller
 
     public function edit(Setting $setting)
     {
-        $fields = ['email' => 'email', 'whatsapp' => 'text', 'phone' => 'text', 'phone2' => 'text','support_phone' => 'text' ,'location' => 'text','embed_map' => 'text',
-            'facebook' => 'text', 'x' => 'text', 'instagram' => 'text', 'youtube' => 'text', 'tiktok' => 'text'
+        $fields = ['email' => 'email', 'whatsapp' => 'text', 'phone' => 'text', 'phone2' => 'text', 'support_phone' => 'text', 'location' => 'text', 'embed_map' => 'text',
+            'facebook' => 'text', 'x' => 'text', 'instagram' => 'text', 'youtube' => 'text', 'tiktok' => 'text',
         ];
-        return view($this->viewPath . '.single', get_defined_vars());
+
+        return view($this->viewPath.'.single', get_defined_vars());
     }
 
     public function update(StoreSettingRequest $request, Setting $setting)
@@ -36,9 +37,9 @@ class SettingController extends Controller
         $setting = $this->blogService->update($request, $setting);
 
         return $this->webDataResponse(
-            route: $this->routePath . '.edit',
+            route: $this->routePath.'.edit',
             data: get_defined_vars(),
-            message: __("messages.update")
+            message: __('messages.update')
         );
     }
 }

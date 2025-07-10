@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Slider\Slider;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SliderSeeder extends Seeder
 {
@@ -20,13 +19,13 @@ class SliderSeeder extends Seeder
                 'translations' => [
                     'en' => [
                         'name' => 'Summer Sale',
-                        'description' => 'Enjoy up to 50% off on summer items!'
+                        'description' => 'Enjoy up to 50% off on summer items!',
                     ],
                     'ar' => [
                         'name' => 'تخفيضات الصيف',
-                        'description' => 'استمتع بخصم يصل إلى 50٪ على منتجات الصيف!'
-                    ]
-                ]
+                        'description' => 'استمتع بخصم يصل إلى 50٪ على منتجات الصيف!',
+                    ],
+                ],
             ],
         ];
 

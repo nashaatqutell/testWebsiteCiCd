@@ -17,8 +17,8 @@ class StoreOfferRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "price" => "required|numeric",
-            "discount_percent" => "required|numeric",
+            'price' => 'required|numeric',
+            'discount_percent' => 'required|numeric',
         ];
         foreach (config('translatable.locales') as $locale) {
             $rules["$locale.name"] = 'required|string';

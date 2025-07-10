@@ -8,24 +8,25 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     use MigrationTrait;
+
     public function up(): void
     {
         Schema::create('seos', function (Blueprint $table) {
             $table->id();
-            $table->string("slug")->nullable();
-            $table->string("page_name")->nullable();
+            $table->string('slug')->nullable();
+            $table->string('page_name')->nullable();
             $this->addGeneralFields($table);
             $table->timestamps();
         });
-        Schema::create("seo_translations", function (Blueprint $table) {
+        Schema::create('seo_translations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("seo_id");
-            $table->foreign("seo_id")->references("id")->on("seos")->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("locale");
-            $table->string("meta_name")->nullable();
-            $table->longText("meta_description")->nullable();
-            $table->longText("meta_keywords")->nullable();
-            $table->unique(["seo_id", "locale"]);
+            $table->unsignedBigInteger('seo_id');
+            $table->foreign('seo_id')->references('id')->on('seos')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('locale');
+            $table->string('meta_name')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('meta_keywords')->nullable();
+            $table->unique(['seo_id', 'locale']);
         });
     }
 

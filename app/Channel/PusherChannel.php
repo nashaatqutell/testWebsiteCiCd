@@ -19,11 +19,11 @@ class PusherChannel implements NotificationChannelInterface
      * @throws GuzzleException
      * @throws ApiErrorException
      */
-
     public function send($notifiable, Notification $notification): void
     {
-        if (!class_exists(Pusher::class)) {
+        if (! class_exists(Pusher::class)) {
             Log::error('Pusher package is not installed. Please run `composer require pusher/pusher-php-server`.');
+
             return; // Gracefully exit if Pusher is not installed
         }
 

@@ -25,6 +25,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = $this->contactService->getAllContacts('paginate');
+
         return $this->paginateResponse(ContactResource::collection($contacts), $contacts);
     }
 
@@ -36,13 +37,15 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $this->contactService->deleteContact($contact);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
-    #=================change status from new to replied=================#
+    // =================change status from new to replied=================#
     public function changeStatus(Contact $contact)
     {
         $this->contactService->toggleContactStatus($contact);
+
         return $this->successResponse(message: __('messages.update'));
     }
 }

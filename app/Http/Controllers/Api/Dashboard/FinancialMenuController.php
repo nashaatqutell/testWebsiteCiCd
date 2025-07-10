@@ -1,15 +1,13 @@
 <?php
+
 namespace App\Http\Controllers\Api\Dashboard;
 
-use App\Http\Resources\JobResource;
 use App\Http\Controllers\Controller;
-use App\Service\FinancialMenuService;
-use App\Models\JobHierarchy\JobHierarchy;
-use App\Http\Resources\JobWebsiteRescource;
-use App\Models\FinancialMenu\FinancialMenu;
-use App\Http\Resources\FinancialMenuResource;
 use App\Http\Requests\Dashboard\FinancialMenu\StoreFinancialMenuRequest;
 use App\Http\Requests\Dashboard\FinancialMenu\UpdateFinancialMenuRequest;
+use App\Http\Resources\FinancialMenuResource;
+use App\Models\FinancialMenu\FinancialMenu;
+use App\Service\FinancialMenuService;
 
 class FinancialMenuController extends Controller
 {
@@ -28,24 +26,28 @@ class FinancialMenuController extends Controller
     public function index()
     {
         $financial_menus = $this->financialMenuService->index('paginate');
+
         return $this->paginateResponse(FinancialMenuResource::collection($financial_menus), $financial_menus);
     }
 
     public function list()
     {
         $financial_menus = $this->financialMenuService->list();
+
         return $this->successResponse(FinancialMenuResource::collection($financial_menus), __('messages.retrieved_successfully'));
     }
 
     public function show(FinancialMenu $financial_menu)
     {
         $financial_menu = $this->financialMenuService->show($financial_menu);
+
         return $this->successResponse(FinancialMenuResource::make($financial_menu), __('messages.retrieved_successfully'));
     }
 
     public function store(StoreFinancialMenuRequest $request)
     {
         $financial_menu = $this->financialMenuService->store($request);
+
         return $this->successResponse(data: $financial_menu->getResource(), message: __('messages.success'));
     }
 
@@ -59,13 +61,14 @@ class FinancialMenuController extends Controller
     public function destroy(FinancialMenu $financial_menu)
     {
         $this->financialMenuService->destroy($financial_menu);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(FinancialMenu $financial_menu)
     {
         $this->financialMenuService->changeStatus($financial_menu);
+
         return $this->successResponse(message: __('keys.status_updated_successfully'));
     }
-
 }

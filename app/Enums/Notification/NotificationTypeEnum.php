@@ -2,7 +2,7 @@
 
 namespace App\Enums\Notification;
 
-enum NotificationTypeEnum : int
+enum NotificationTypeEnum: int
 {
     case Pusher = 1;
 

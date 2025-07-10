@@ -10,14 +10,11 @@ use App\Http\Resources\RoleResource;
 use App\Models\User;
 use App\Service\RoleService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-
-
-    public function __construct(protected RoleService $roleService = new RoleService())
+    public function __construct(protected RoleService $roleService = new RoleService)
     {
         $this->middleware('permission:show_roles')->only(['index', 'show']);
         $this->middleware('permission:create_roles')->only(['store']);
@@ -29,27 +26,30 @@ class RoleController extends Controller
     public function index()
     {
         $roles = $this->roleService->index('paginate');
+
         return $this->paginateResponse(data: RoleResource::collection($roles), collection: $roles);
     }
 
     public function list(): JsonResponse
     {
         $roles = $this->roleService->list();
-        $message = __("roles.Roles fetched successfully");
+        $message = __('roles.Roles fetched successfully');
+
         return $this->successResponse(data: RoleResource::collection($roles), message: $message);
     }
-
 
     public function store(StoreRoleRequest $request): JsonResponse
     {
         $role = $this->roleService->store($request);
-        return $this->successResponse(data: RoleResource::make($role), message: __("messages.success"));
+
+        return $this->successResponse(data: RoleResource::make($role), message: __('messages.success'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role): JsonResponse
     {
         $role = $this->roleService->update($request, $role);
-        return $this->successResponse(data: RoleResource::make($role), message: __("messages.success"));
+
+        return $this->successResponse(data: RoleResource::make($role), message: __('messages.success'));
     }
 
     public function show(Role $role): JsonResponse
@@ -60,7 +60,8 @@ class RoleController extends Controller
     public function destroy(Role $role): JsonResponse
     {
         $this->roleService->destroy($role);
-        return $this->successResponse(message: __("messages.delete"));
+
+        return $this->successResponse(message: __('messages.delete'));
     }
 
     public function assignRoleToUser(AssignRoleRequest $request)
@@ -69,7 +70,8 @@ class RoleController extends Controller
         $user = User::query()->whereId($data['user_id'])->first();
         $role = Role::findById($data['role_id'], 'api');
         $user->assignRole($role); // add many of role to user
-//        $user->syncRoles([$role]);
-        return $this->successResponse(message: __("messages.success"));
+
+        //        $user->syncRoles([$role]);
+        return $this->successResponse(message: __('messages.success'));
     }
 }

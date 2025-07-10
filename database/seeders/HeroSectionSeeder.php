@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\HeroSection\HeroSection;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class HeroSectionSeeder extends Seeder
@@ -21,13 +20,13 @@ class HeroSectionSeeder extends Seeder
                     'en' => [
                         'name' => 'Welcome to Our Website',
                         'sub_description' => 'Discover amazing content and join our community today.',
-                        'description' => 'Discover amazing content and join our community today.'
+                        'description' => 'Discover amazing content and join our community today.',
                     ],
                     'ar' => [
                         'name' => 'مرحبًا بكم في موقعنا',
                         'sub_description' => 'اكتشف محتوى رائعًا وانضم إلى مجتمعنا اليوم.',
                         'description' => 'اكتشف محتوى رائعًا وانضم إلى مجتمعنا اليوم.',
-                    ]
+                    ],
                 ],
             ],
         ];

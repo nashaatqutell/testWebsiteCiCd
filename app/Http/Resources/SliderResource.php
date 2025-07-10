@@ -15,12 +15,12 @@ class SliderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
             'image' => url($this->getFirstMediaUrl('slider_images')) ?: null,
-            'is_active'=> $this->is_active,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null,
+            'is_active' => $this->is_active,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
 

@@ -2,17 +2,20 @@
 
 namespace App\Models\Work;
 
-use App\Models\BaseModel;
 use App\Http\Filters\WorkFilter;
 use App\Http\Resources\WorkResource;
-use Astrotomic\Translatable\Translatable;
+use App\Models\BaseModel;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 class Work extends BaseModel implements TranslatableContract
 {
     use Translatable;
+
     protected $guarded = [];
+
     protected $translatedAttributes = ['name', 'description', 'meta_description', 'classification'];
+
     protected $filter = WorkFilter::class;
 
     public function getResource(): WorkResource

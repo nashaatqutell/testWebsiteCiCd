@@ -19,6 +19,7 @@ class AboutResource extends JsonResource
         if ($lang == 'ar') {
             $org_structure = url($this->getFirstMediaUrl('org_structure_ar'));
         }
+
         return [
             'id' => $this->id,
             'type' => $this->type,
@@ -28,7 +29,7 @@ class AboutResource extends JsonResource
             'meta_description' => $this->meta_description,
             'image' => url($this->getFirstMediaUrl('about_images')) ?: null,
             'org_structure' => $org_structure ?: null,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
         ];
     }
 }

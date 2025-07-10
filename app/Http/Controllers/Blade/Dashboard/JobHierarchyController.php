@@ -15,7 +15,7 @@ class JobHierarchyController extends Controller
 
     public function __construct()
     {
-        $this->jobService = new JobService();
+        $this->jobService = new JobService;
         $this->middleware('permission:show_jobs')->only(['index']);
         $this->middleware('permission:create_jobs')->only(['store']);
         $this->middleware('permission:update_jobs')->only(['update']);
@@ -27,6 +27,7 @@ class JobHierarchyController extends Controller
     {
         $jobs = JobHierarchy::whereIsActive()->get();
         $title = __('jobs.Job_Hierarchy');
+
         return view('dashboard.jobs.index', get_defined_vars());
     }
 
@@ -34,23 +35,26 @@ class JobHierarchyController extends Controller
     {
         $jobs = JobHierarchy::whereIsActive()->get();
         $title = __('jobs.Job_Hierarchy');
+
         return view('dashboard.jobs.index', get_defined_vars());
     }
 
     public function create()
     {
-        $job = new JobHierarchy();
+        $job = new JobHierarchy;
         $mainJobs = JobHierarchy::all();
+
         return view('dashboard.jobs.single', get_defined_vars());
     }
 
     public function store(StoreJobHierarchyRequest $request)
     {
         $this->jobService->store($request->validated());
+
         return redirect()->route('admin.jobs.index')->with(
             [
-                "message" => __("messages.success"),
-                "alert-type" => "success",
+                'message' => __('messages.success'),
+                'alert-type' => 'success',
             ]
         );
     }
@@ -59,6 +63,7 @@ class JobHierarchyController extends Controller
     public function edit(JobHierarchy $job)
     {
         $mainJobs = JobHierarchy::where('id', '!=', $job->id)->get();
+
         return view('dashboard.jobs.single', get_defined_vars());
     }
 
@@ -68,8 +73,8 @@ class JobHierarchyController extends Controller
 
         return redirect()->route('admin.jobs.index')->with(
             [
-                "message" => __("messages.update"),
-                "alert-type" => "success",
+                'message' => __('messages.update'),
+                'alert-type' => 'success',
             ]
         );
     }
@@ -79,6 +84,7 @@ class JobHierarchyController extends Controller
     {
         try {
             $this->jobService->destroy($job);
+
             return response()->json([
                 'success' => true,
                 'message' => __('jobs.job_deleted_successfully'),
@@ -95,6 +101,7 @@ class JobHierarchyController extends Controller
     public function changeStatus(JobHierarchy $job)
     {
         $this->jobService->changeStatus($job);
+
         return response()->json([
             'success' => true,
             'message' => __('keys.status_updated'),

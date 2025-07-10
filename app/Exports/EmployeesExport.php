@@ -2,8 +2,8 @@
 
 namespace App\Exports;
 
-use App\Models\User;
 use App\Enums\User\RoleEnum;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -27,8 +27,9 @@ class EmployeesExport implements FromCollection, WithHeadings
                 ];
             });
     }
+
     public function headings(): array
     {
-        return ["ID", "Name", "Email", "Phone", "Role"];
+        return ['ID', 'Name', 'Email', 'Phone', 'Role'];
     }
 }

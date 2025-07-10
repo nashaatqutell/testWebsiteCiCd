@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
@@ -15,8 +16,8 @@ class JobHierarchyController extends Controller
 
     public function __construct()
     {
-        $this->jobService = new JobService();
-        $this->middleware('permission:show_jobs')->only(['index','show']);
+        $this->jobService = new JobService;
+        $this->middleware('permission:show_jobs')->only(['index', 'show']);
         $this->middleware('permission:create_jobs')->only(['store']);
         $this->middleware('permission:update_jobs')->only(['update']);
         $this->middleware('permission:delete_jobs')->only(['destroy']);
@@ -26,24 +27,28 @@ class JobHierarchyController extends Controller
     public function index()
     {
         $jobs = $this->jobService->index('paginate');
+
         return $this->paginateResponse(JobResource::collection($jobs), $jobs);
     }
 
     public function list()
     {
         $jobs = $this->jobService->list();
+
         return $this->successResponse(JobWebsiteRescource::collection($jobs), __('messages.retrieved_successfully'));
     }
 
     public function show(JobHierarchy $job)
     {
         $job = $this->jobService->show($job);
+
         return $this->successResponse(JobResource::make($job), __('messages.retrieved_successfully'));
     }
 
     public function store(StoreJobHierarchyRequest $request)
     {
         $job = $this->jobService->store($request->validated());
+
         return $this->successResponse(data: $job->getResource(), message: __('messages.success'));
     }
 
@@ -57,13 +62,14 @@ class JobHierarchyController extends Controller
     public function destroy(JobHierarchy $job)
     {
         $this->jobService->destroy($job);
+
         return $this->successResponse(message: __('messages.delete'));
     }
 
     public function changeStatus(JobHierarchy $job)
     {
         $this->jobService->changeStatus($job);
+
         return $this->successResponse(message: __('messages.update'));
     }
-
 }

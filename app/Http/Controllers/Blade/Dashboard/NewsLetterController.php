@@ -10,6 +10,7 @@ class NewsLetterController extends Controller
     public function index()
     {
         $newsLetters = NewsLetter::query()->latest()->get();
-        return view("dashboard.newsLetter.index", get_defined_vars());
+
+        return view('dashboard.newsLetter.index', get_defined_vars());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Observers;
 
 use App\Models\Blog\Blog;
@@ -17,5 +18,4 @@ class BlogObserver
             $blog->slug = Str::slug($blog->translateOrNew(app()->getLocale())->name);
         }
     }
-
 }

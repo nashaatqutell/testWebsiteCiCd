@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SliderTranslation extends Model
 {
     use SoftDeletes;
+
     public $timestamps = false;
+
     protected $fillable = ['name', 'description'];
 }

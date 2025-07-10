@@ -4,7 +4,6 @@ namespace App\Http\Requests\Dashboard\Roles;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreRoleRequest extends FormRequest
 {
@@ -24,9 +23,9 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         $data = [
-            "name" => "required|unique:roles,name",
-            "permission" => "required|array",
-            "permission.*" => "required|exists:permissions,id|distinct|string",
+            'name' => 'required|unique:roles,name',
+            'permission' => 'required|array',
+            'permission.*' => 'required|exists:permissions,id|distinct|string',
         ];
 
         return $data;

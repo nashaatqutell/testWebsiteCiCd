@@ -15,13 +15,13 @@ class PageResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "id" => $this->id,
+            'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
             'meta_description' => $this->meta_description,
             'image' => url($this->getFirstMediaUrl('Page_images')) ?: null,
-            'is_active'=> $this->is_active,
-            "added_by" => SimpleDataResource::make($this->AddedBy) ?? null,
+            'is_active' => $this->is_active,
+            'added_by' => SimpleDataResource::make($this->AddedBy) ?? null,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

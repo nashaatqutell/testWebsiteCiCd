@@ -10,7 +10,7 @@ class JobHierarchyFilter extends BaseFilters
      * @var array
      */
     protected $filters = [
-        'name','position'
+        'name', 'position',
     ];
 
     /**
@@ -26,7 +26,7 @@ class JobHierarchyFilter extends BaseFilters
                 ->when(
                     $this->request->filled('name'),
                     function ($query) use ($value) {
-                        $query->whereTranslationLike('name', '%'.$value.'%')->orWhereTranslationLike('position','%'.$value.'%');
+                        $query->whereTranslationLike('name', '%'.$value.'%')->orWhereTranslationLike('position', '%'.$value.'%');
                     }
                 );
         }

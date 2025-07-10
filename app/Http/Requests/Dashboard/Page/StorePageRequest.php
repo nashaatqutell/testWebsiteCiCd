@@ -31,7 +31,7 @@ class StorePageRequest extends FormRequest
             $rules["$locale.description"] = 'required|string';
             $rules["$locale.meta_description"] = 'required|string';
         }
+
         return $rules;
     }
-
 }

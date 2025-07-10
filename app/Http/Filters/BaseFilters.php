@@ -2,8 +2,8 @@
 
 namespace App\Http\Filters;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 abstract class BaseFilters
 {
@@ -28,8 +28,6 @@ abstract class BaseFilters
 
     /**
      * Create a new BaseFilters instance.
-     *
-     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -39,7 +37,7 @@ abstract class BaseFilters
     /**
      * Apply the filters.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function apply($builder)
@@ -50,7 +48,7 @@ abstract class BaseFilters
             if ($this->request->has($filter)) {
                 $methodName = Str::camel($filter);
             } else {
-                $methodName = 'default' . Str::studly($filter);
+                $methodName = 'default'.Str::studly($filter);
             }
 
             if (method_exists($this, $methodName)) {

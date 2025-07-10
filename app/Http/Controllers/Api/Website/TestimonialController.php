@@ -15,6 +15,7 @@ class TestimonialController extends Controller
     public function __invoke(Request $request)
     {
         $testimonials = Testimonial::whereIsActive()->filter()->latest()->get();
+
         return $this->successResponse(TestimonialResource::collection($testimonials));
     }
 }

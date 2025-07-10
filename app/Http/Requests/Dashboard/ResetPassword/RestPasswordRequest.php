@@ -17,9 +17,9 @@ class RestPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "password" => "required|confirmed|min:8",
-            "password_confirmation" => "required|min:8|same:password",
-            "email" => "required|email|exists:users,email",
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|min:8|same:password',
+            'email' => 'required|email|exists:users,email',
         ];
     }
 }

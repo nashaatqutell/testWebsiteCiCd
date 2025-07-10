@@ -12,6 +12,7 @@ class CountryController extends Controller
     public function __invoke(Request $request)
     {
         $countries = Country::whereIsActive()->filter()->latest()->get();
+
         return $this->successResponse(CountryResource::collection($countries));
     }
 }
