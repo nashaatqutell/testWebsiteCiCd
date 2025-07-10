@@ -1,0 +1,10 @@
+name: 018 BasicsCustomCompositeAction CI/CD
+on:
+    workflow_dispatch:
+
+jobs:
+    print-hello-world:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print Hello World
+              uses: ./.github/actions/printHelloWorld

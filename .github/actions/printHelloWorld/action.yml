@@ -1,0 +1,10 @@
+name: printHelloWorld
+description: Prints hello world actions
+
+runs:
+    using: composite
+    steps:
+      - run: echo "Hello World"
+        shell: bash
+      - run: echo "Hello World 2"
+        shell: bash
