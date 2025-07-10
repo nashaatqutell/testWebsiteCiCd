@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $aboutTypes = TypeEnum::cases();
-        $logo = Setting::first()?->getFirstMediaUrl('logo2') ?? null;
-        View::share(['aboutTypes' => $aboutTypes, 'logo' => $logo]);
+//        $aboutTypes = TypeEnum::cases();
+//        $logo = Setting::first()?->getFirstMediaUrl('logo2') ?? null;
+//        View::share(['aboutTypes' => $aboutTypes, 'logo' => $logo]);
     }
 }
