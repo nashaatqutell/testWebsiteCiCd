@@ -10,16 +10,8 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-
-
-
-
-
-
-
-
     use MigrationTrait;
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
