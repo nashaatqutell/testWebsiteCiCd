@@ -10,7 +10,10 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: install dependencies
+      - name: enable mysql
+        run: sudo systemctl start mysql.service
+
+      - name: install dependencies -q
         run: composer install
 
       - name: prepare project
