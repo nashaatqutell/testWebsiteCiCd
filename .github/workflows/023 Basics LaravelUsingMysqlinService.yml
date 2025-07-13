@@ -1,0 +1,28 @@
+name: 022 Basics Laravel test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print-hello-world:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_DATABASE: apiwebsite
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: install dependencies
+        run: composer install -q
+
+      - name: prepare project
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: run tests
+        run: php artisan test --compact
