@@ -13,7 +13,7 @@ jobs:
       - name: enable mysql
         run: |
           sudo systemctl start mysql.service
-          mysql -e "CREATE DATABASE apiwebsite"
+          mysql -uroot -proot -e "CREATE DATABASE apiwebsite"
 
       - name: install dependencies
         run: composer install -q
