@@ -13,8 +13,8 @@ jobs:
       - name: enable mysql
         run: sudo systemctl start mysql.service
 
-      - name: install dependencies -q
-        run: composer install
+      - name: install dependencies
+        run: composer install -q
 
       - name: prepare project
         run: |
