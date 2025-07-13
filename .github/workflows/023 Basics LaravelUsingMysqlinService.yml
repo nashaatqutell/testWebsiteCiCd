@@ -1,4 +1,4 @@
-name: 022 Basics Laravel test
+name: 023 Basics Laravel usingMysqlInService
 
 on:
   workflow_dispatch:
@@ -12,6 +12,8 @@ jobs:
         env:
           MYSQL_DATABASE: apiwebsite
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306:3306
     steps:
       - name: checkout code
         uses: actions/checkout@v4.2.2
